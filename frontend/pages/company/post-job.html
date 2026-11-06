@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng tin tuyển dụng - JobPortal</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/company.css">
+  <style>
+    /* Post Job Page Specific Styles */
+    .salary-group {
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .salary-group .salary-fields {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .salary-group .salary-fields input {
+      flex: 1;
+      min-width: 120px;
+    }
+
+    .salary-group .salary-fields .salary-sep {
+      color: var(--text-muted);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .salary-group .salary-currency {
+      width: 90px;
+      flex-shrink: 0;
+    }
+
+    .salary-group .salary-negotiate {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 0;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .salary-group .salary-negotiate input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .salary-group .salary-negotiate label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      cursor: pointer;
+      margin-bottom: 0;
+    }
+
+    /* Preview Section Styles */
+    .preview-job-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .preview-job-header {
+      background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+      padding: 24px;
+      color: #fff;
+    }
+
+    .preview-job-header h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .preview-job-header .preview-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
+    .preview-job-header .preview-meta span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .preview-job-body {
+      padding: 24px;
+    }
+
+    .preview-job-body .preview-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .preview-job-body .preview-tags .tag {
+      padding: 5px 12px;
+      background: var(--primary-light);
+      color: var(--primary);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .preview-job-body .preview-section-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 10px;
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .preview-job-body .preview-section-title:first-child {
+      margin-top: 0;
+    }
+
+    .preview-job-body .preview-section-title i {
+      color: var(--primary);
+      font-size: 14px;
+    }
+
+    .preview-job-body .preview-text {
+      font-size: 13.5px;
+      color: var(--text);
+      line-height: 1.7;
+      white-space: pre-line;
+    }
+
+    .preview-job-body .preview-text ul {
+      padding-left: 20px;
+      list-style: disc;
+    }
+
+    .preview-job-body .preview-text ul li {
+      margin-bottom: 4px;
+    }
+
+    .preview-job-body .preview-info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+      padding: 16px;
+      background: var(--bg);
+      border-radius: var(--radius);
+    }
+
+    .preview-job-body .preview-info-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .preview-job-body .preview-info-item .info-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-sm);
+      background: var(--primary-light);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .preview-job-body .preview-info-item .info-text {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .preview-job-body .preview-info-item .info-value {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .preview-job-body .preview-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .preview-job-body .preview-skills .skill-badge {
+      padding: 5px 14px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    /* Form actions sticky */
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      padding: 24px;
+      border-top: 1px solid var(--border);
+      background: var(--bg-white);
+      position: sticky;
+      bottom: 0;
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    }
+
+    .form-section-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .form-section-title i {
+      color: var(--primary);
+    }
+
+    .form-section-title .step-badge {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">
+          <i class="fas fa-briefcase"></i>
+        </div>
+        <div>
+          <h2>JobPortal</h2>
+          <span>Nhà tuyển dụng</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-label">Quản lý</div>
+        <a href="dashboard.html">
+          <span class="nav-icon"><i class="fas fa-chart-pie"></i></span>
+          Tổng quan
+        </a>
+        <a href="dashboard.html#company-info">
+          <span class="nav-icon"><i class="fas fa-building"></i></span>
+          Thông tin doanh nghiệp
+        </a>
+        <a href="post-job.html" class="active">
+          <span class="nav-icon"><i class="fas fa-plus-circle"></i></span>
+          Đăng tin tuyển dụng
+        </a>
+        <a href="manage-jobs.html">
+          <span class="nav-icon"><i class="fas fa-briefcase"></i></span>
+          Quản lý tin tuyển dụng
+        </a>
+        <a href="applications.html">
+          <span class="nav-icon"><i class="fas fa-file-alt"></i></span>
+          Hồ sơ ứng tuyển
+        </a>
+        <a href="ai-recommend.html">
+          <span class="nav-icon"><i class="fas fa-robot"></i></span>
+          AI Gợi ý
+        </a>
+
+        <div class="nav-label" style="margin-top: 16px;">Khác</div>
+        <a href="../../index.html">
+          <span class="nav-icon"><i class="fas fa-home"></i></span>
+          Về trang chủ
+        </a>
+        <a href="../auth/login.html">
+          <span class="nav-icon"><i class="fas fa-sign-out-alt"></i></span>
+          Đăng xuất
+        </a>
+      </nav>
+
+      <div class="sidebar-user">
+        <div class="user-avatar">TV</div>
+        <div class="user-info">
+          <div class="name">TechViet Solutions</div>
+          <div class="role">Nhà tuyển dụng</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Top Header -->
+      <header class="top-header">
+        <div>
+          <div class="page-title">Đăng tin tuyển dụng</div>
+          <div class="breadcrumb">
+            <a href="dashboard.html">Tổng quan</a>
+            <span class="separator">/</span>
+            <span>Đăng tin tuyển dụng</span>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button class="btn btn-ghost" title="Thông báo">
+            <i class="fas fa-bell"></i>
+          </button>
+        </div>
+      </header>
+
+      <!-- Page Content -->
+      <div class="page-content">
+        <!-- Step Indicator -->
+        <div class="form-steps">
+          <div class="form-step completed" data-step="1">
+            <span class="step-number">1</span>
+            <span class="step-label">Thông tin cơ bản</span>
+          </div>
+          <div class="step-connector active"></div>
+          <div class="form-step active" data-step="2">
+            <span class="step-number">2</span>
+            <span class="step-label">Chi tiết công việc</span>
+          </div>
+          <div class="step-connector"></div>
+          <div class="form-step" data-step="3">
+            <span class="step-number">3</span>
+            <span class="step-label">Xem trước & Đăng</span>
+          </div>
+        </div>
+
+        <form id="postJobForm" onsubmit="return false;">
+          <!-- Section 1: Thông tin cơ bản -->
+          <div class="card mb-24">
+            <div class="card-body">
+              <div class="form-section-title">
+                <span class="step-badge">1</span>
+                Thông tin cơ bản
+              </div>
+
+              <!-- Tên vị trí -->
+              <div class="form-group">
+                <label>Tên vị trí tuyển dụng <span class="required">*</span></label>
+                <input type="text" class="form-control" id="jobTitle" placeholder="VD: Lập trình viên Frontend" value="Lập trình viên Frontend (ReactJS)">
+              </div>
+
+              <!-- Phòng ban + Loại hình -->
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Phòng ban <span class="required">*</span></label>
+                  <select class="form-control" id="department">
+                    <option value="">-- Chọn phòng ban --</option>
+                    <option value="ky-thuat" selected>Kỹ thuật</option>
+                    <option value="kinh-doanh">Kinh doanh</option>
+                    <option value="marketing">Marketing</option>
+                    <option value="nhan-su">Nhân sự</option>
+                    <option value="tai-chinh">Tài chính</option>
+                    <option value="khac">Khác</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Loại hình <span class="required">*</span></label>
+                  <select class="form-control" id="jobType">
+                    <option value="">-- Chọn loại hình --</option>
+                    <option value="toan-thoi-gian" selected>Toàn thời gian</option>
+                    <option value="ban-thoi-gian">Bán thời gian</option>
+                    <option value="thuc-tap">Thực tập</option>
+                    <option value="remote">Remote</option>
+                    <option value="freelance">Freelance</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Vị trí + Số lượng -->
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Vị trí <span class="required">*</span></label>
+                  <select class="form-control" id="position">
+                    <option value="">-- Chọn vị trí --</option>
+                    <option value="nhan-vien" selected>Nhân viên</option>
+                    <option value="truong-nhom">Trưởng nhóm</option>
+                    <option value="quan-ly">Quản lý</option>
+                    <option value="giam-doc">Giám đốc</option>
+                    <option value="thuc-tap-sinh">Thực tập sinh</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Số lượng tuyển <span class="required">*</span></label>
+                  <input type="number" class="form-control" id="quantity" min="1" value="3" placeholder="VD: 5">
+                </div>
+              </div>
+
+              <!-- Mức lương -->
+              <div class="form-group">
+                <label>Mức lương <span class="required">*</span></label>
+                <div class="salary-group">
+                  <div class="salary-fields">
+                    <input type="text" class="form-control" id="salaryFrom" placeholder="Từ" value="15,000,000">
+                    <span class="salary-sep">—</span>
+                    <input type="text" class="form-control" id="salaryTo" placeholder="Đến" value="25,000,000">
+                  </div>
+                  <select class="form-control salary-currency" id="salaryCurrency">
+                    <option value="VND" selected>VND</option>
+                    <option value="USD">USD</option>
+                  </select>
+                  <div class="salary-negotiate">
+                    <input type="checkbox" id="salaryNegotiate">
+                    <label for="salaryNegotiate">Thỏa thuận</label>
+                  </div>
+                </div>
+                <div class="form-hint">Nhập mức lương theo tháng. Tích "Thỏa thuận" nếu không muốn hiển thị lương cụ thể.</div>
+              </div>
+
+              <!-- Địa điểm + Hạn nộp -->
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Địa điểm làm việc <span class="required">*</span></label>
+                  <input type="text" class="form-control" id="location" placeholder="VD: Quận 1, TP. Hồ Chí Minh" value="Tầng 12, Toà nhà Landmark, Quận 1, TP. HCM">
+                </div>
+                <div class="form-group">
+                  <label>Hạn nộp hồ sơ <span class="required">*</span></label>
+                  <input type="date" class="form-control" id="deadline" value="2026-12-31">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2: Chi tiết công việc -->
+          <div class="card mb-24">
+            <div class="card-body">
+              <div class="form-section-title">
+                <span class="step-badge">2</span>
+                Chi tiết công việc
+              </div>
+
+              <!-- Mô tả công việc -->
+              <div class="form-group">
+                <label>Mô tả công việc <span class="required">*</span></label>
+                <div class="editor-toolbar">
+                  <button type="button" title="In đậm" onclick="formatText('jobDescription', 'bold')"><i class="fas fa-bold"></i></button>
+                  <button type="button" title="In nghiêng" onclick="formatText('jobDescription', 'italic')"><i class="fas fa-italic"></i></button>
+                  <button type="button" title="Danh sách" onclick="formatText('jobDescription', 'list')"><i class="fas fa-list-ul"></i></button>
+                </div>
+                <textarea class="form-control" id="jobDescription" rows="6">- Phát triển giao diện người dùng (UI) cho các ứng dụng web sử dụng ReactJS
+- Xây dựng các component tái sử dụng và thư viện UI nội bộ
+- Tối ưu hiệu suất ứng dụng, đảm bảo tương thích đa trình duyệt
+- Phối hợp với đội Backend để tích hợp API RESTful và GraphQL
+- Tham gia review code, viết unit test và đảm bảo chất lượng sản phẩm
+- Nghiên cứu và áp dụng các công nghệ mới vào dự án</textarea>
+              </div>
+
+              <!-- Yêu cầu ứng viên -->
+              <div class="form-group">
+                <label>Yêu cầu ứng viên <span class="required">*</span></label>
+                <div class="editor-toolbar">
+                  <button type="button" title="In đậm" onclick="formatText('jobRequirements', 'bold')"><i class="fas fa-bold"></i></button>
+                  <button type="button" title="In nghiêng" onclick="formatText('jobRequirements', 'italic')"><i class="fas fa-italic"></i></button>
+                  <button type="button" title="Danh sách" onclick="formatText('jobRequirements', 'list')"><i class="fas fa-list-ul"></i></button>
+                </div>
+                <textarea class="form-control" id="jobRequirements" rows="6">- Tốt nghiệp Đại học chuyên ngành CNTT, Khoa học máy tính hoặc tương đương
+- Có ít nhất 1-2 năm kinh nghiệm với ReactJS hoặc các framework tương tự
+- Thành thạo HTML5, CSS3, JavaScript (ES6+)
+- Hiểu biết về TypeScript, Redux/Context API, React Hooks
+- Có kinh nghiệm sử dụng Git, quy trình CI/CD
+- Kỹ năng giao tiếp tốt, tinh thần làm việc nhóm cao
+- Tiếng Anh đọc hiểu tài liệu kỹ thuật</textarea>
+              </div>
+
+              <!-- Quyền lợi -->
+              <div class="form-group">
+                <label>Quyền lợi <span class="required">*</span></label>
+                <div class="editor-toolbar">
+                  <button type="button" title="In đậm" onclick="formatText('jobBenefits', 'bold')"><i class="fas fa-bold"></i></button>
+                  <button type="button" title="In nghiêng" onclick="formatText('jobBenefits', 'italic')"><i class="fas fa-italic"></i></button>
+                  <button type="button" title="Danh sách" onclick="formatText('jobBenefits', 'list')"><i class="fas fa-list-ul"></i></button>
+                </div>
+                <textarea class="form-control" id="jobBenefits" rows="6">- Mức lương cạnh tranh, thưởng hiệu suất hàng quý
+- Review lương 2 lần/năm
+- Bảo hiểm sức khỏe cao cấp cho nhân viên và người thân
+- 15 ngày phép/năm + nghỉ lễ theo quy định
+- Laptop và thiết bị làm việc được cung cấp đầy đủ
+- Được đào tạo và tham gia các khóa học nâng cao kỹ năng
+- Môi trường làm việc năng động, cởi mở
+- Team building, du lịch công ty hàng năm</textarea>
+              </div>
+
+              <!-- Kỹ năng yêu cầu -->
+              <div class="form-group">
+                <label>Kỹ năng yêu cầu</label>
+                <div class="skills-input-wrapper" id="skillsWrapper" onclick="document.getElementById('skillInput').focus()">
+                  <span class="skill-tag" data-skill="JavaScript">
+                    JavaScript
+                    <span class="remove-skill" onclick="removeSkill(this, event)">&times;</span>
+                  </span>
+                  <span class="skill-tag" data-skill="React">
+                    React
+                    <span class="remove-skill" onclick="removeSkill(this, event)">&times;</span>
+                  </span>
+                  <span class="skill-tag" data-skill="HTML/CSS">
+                    HTML/CSS
+                    <span class="remove-skill" onclick="removeSkill(this, event)">&times;</span>
+                  </span>
+                  <input type="text" id="skillInput" placeholder="Nhập kỹ năng và nhấn Enter..." onkeydown="handleSkillInput(event)">
+                </div>
+                <div class="form-hint">Nhập tên kỹ năng rồi nhấn Enter để thêm. Nhấn × để xóa.</div>
+              </div>
+
+              <!-- Kinh nghiệm + Trình độ -->
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Kinh nghiệm tối thiểu</label>
+                  <select class="form-control" id="experience">
+                    <option value="">-- Chọn kinh nghiệm --</option>
+                    <option value="khong-yeu-cau">Không yêu cầu</option>
+                    <option value="duoi-1-nam">Dưới 1 năm</option>
+                    <option value="1-2-nam" selected>1-2 năm</option>
+                    <option value="2-3-nam">2-3 năm</option>
+                    <option value="3-5-nam">3-5 năm</option>
+                    <option value="tren-5-nam">Trên 5 năm</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Trình độ học vấn</label>
+                  <select class="form-control" id="education">
+                    <option value="">-- Chọn trình độ --</option>
+                    <option value="khong-yeu-cau">Không yêu cầu</option>
+                    <option value="trung-cap">Trung cấp</option>
+                    <option value="cao-dang">Cao đẳng</option>
+                    <option value="dai-hoc" selected>Đại học</option>
+                    <option value="thac-si">Thạc sĩ</option>
+                    <option value="tien-si">Tiến sĩ</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: Xem trước -->
+          <div class="card mb-24">
+            <div class="card-body">
+              <div class="form-section-title">
+                <span class="step-badge">3</span>
+                Xem trước tin tuyển dụng
+              </div>
+
+              <div class="preview-job-card" id="previewCard">
+                <!-- Preview Header -->
+                <div class="preview-job-header">
+                  <h2 id="previewTitle">Lập trình viên Frontend (ReactJS)</h2>
+                  <div class="preview-meta">
+                    <span><i class="fas fa-building"></i> TechViet Solutions</span>
+                    <span><i class="fas fa-map-marker-alt"></i> <span id="previewLocation">Tầng 12, Toà nhà Landmark, Quận 1, TP. HCM</span></span>
+                    <span><i class="fas fa-clock"></i> <span id="previewType">Toàn thời gian</span></span>
+                    <span><i class="fas fa-calendar-alt"></i> Hạn nộp: <span id="previewDeadline">31/12/2026</span></span>
+                  </div>
+                </div>
+
+                <!-- Preview Body -->
+                <div class="preview-job-body">
+                  <!-- Quick Info Grid -->
+                  <div class="preview-info-grid">
+                    <div class="preview-info-item">
+                      <div class="info-icon"><i class="fas fa-money-bill-wave"></i></div>
+                      <div>
+                        <div class="info-text">Mức lương</div>
+                        <div class="info-value" id="previewSalary">15 - 25 triệu VND</div>
+                      </div>
+                    </div>
+                    <div class="preview-info-item">
+                      <div class="info-icon"><i class="fas fa-user-tie"></i></div>
+                      <div>
+                        <div class="info-text">Vị trí</div>
+                        <div class="info-value" id="previewPosition">Nhân viên</div>
+                      </div>
+                    </div>
+                    <div class="preview-info-item">
+                      <div class="info-icon"><i class="fas fa-briefcase"></i></div>
+                      <div>
+                        <div class="info-text">Kinh nghiệm</div>
+                        <div class="info-value" id="previewExp">1-2 năm</div>
+                      </div>
+                    </div>
+                    <div class="preview-info-item">
+                      <div class="info-icon"><i class="fas fa-graduation-cap"></i></div>
+                      <div>
+                        <div class="info-text">Trình độ</div>
+                        <div class="info-value" id="previewEdu">Đại học</div>
+                      </div>
+                    </div>
+                    <div class="preview-info-item">
+                      <div class="info-icon"><i class="fas fa-users"></i></div>
+                      <div>
+                        <div class="info-text">Số lượng</div>
+                        <div class="info-value" id="previewQuantity">3 người</div>
+                      </div>
+                    </div>
+                    <div class="preview-info-item">
+                      <div class="info-icon"><i class="fas fa-sitemap"></i></div>
+                      <div>
+                        <div class="info-text">Phòng ban</div>
+                        <div class="info-value" id="previewDept">Kỹ thuật</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Mô tả -->
+                  <div class="preview-section-title"><i class="fas fa-file-alt"></i> Mô tả công việc</div>
+                  <div class="preview-text" id="previewDesc">
+                    <ul>
+                      <li>Phát triển giao diện người dùng (UI) cho các ứng dụng web sử dụng ReactJS</li>
+                      <li>Xây dựng các component tái sử dụng và thư viện UI nội bộ</li>
+                      <li>Tối ưu hiệu suất ứng dụng, đảm bảo tương thích đa trình duyệt</li>
+                      <li>Phối hợp với đội Backend để tích hợp API RESTful và GraphQL</li>
+                      <li>Tham gia review code, viết unit test và đảm bảo chất lượng sản phẩm</li>
+                      <li>Nghiên cứu và áp dụng các công nghệ mới vào dự án</li>
+                    </ul>
+                  </div>
+
+                  <!-- Yêu cầu -->
+                  <div class="preview-section-title"><i class="fas fa-check-circle"></i> Yêu cầu ứng viên</div>
+                  <div class="preview-text" id="previewReq">
+                    <ul>
+                      <li>Tốt nghiệp Đại học chuyên ngành CNTT, Khoa học máy tính hoặc tương đương</li>
+                      <li>Có ít nhất 1-2 năm kinh nghiệm với ReactJS hoặc các framework tương tự</li>
+                      <li>Thành thạo HTML5, CSS3, JavaScript (ES6+)</li>
+                      <li>Hiểu biết về TypeScript, Redux/Context API, React Hooks</li>
+                      <li>Có kinh nghiệm sử dụng Git, quy trình CI/CD</li>
+                      <li>Kỹ năng giao tiếp tốt, tinh thần làm việc nhóm cao</li>
+                      <li>Tiếng Anh đọc hiểu tài liệu kỹ thuật</li>
+                    </ul>
+                  </div>
+
+                  <!-- Quyền lợi -->
+                  <div class="preview-section-title"><i class="fas fa-gift"></i> Quyền lợi</div>
+                  <div class="preview-text" id="previewBenefits">
+                    <ul>
+                      <li>Mức lương cạnh tranh, thưởng hiệu suất hàng quý</li>
+                      <li>Review lương 2 lần/năm</li>
+                      <li>Bảo hiểm sức khỏe cao cấp cho nhân viên và người thân</li>
+                      <li>15 ngày phép/năm + nghỉ lễ theo quy định</li>
+                      <li>Laptop và thiết bị làm việc được cung cấp đầy đủ</li>
+                      <li>Được đào tạo và tham gia các khóa học nâng cao kỹ năng</li>
+                      <li>Môi trường làm việc năng động, cởi mở</li>
+                      <li>Team building, du lịch công ty hàng năm</li>
+                    </ul>
+                  </div>
+
+                  <!-- Kỹ năng -->
+                  <div class="preview-section-title"><i class="fas fa-code"></i> Kỹ năng yêu cầu</div>
+                  <div class="preview-skills" id="previewSkills">
+                    <span class="skill-badge">JavaScript</span>
+                    <span class="skill-badge">React</span>
+                    <span class="skill-badge">HTML/CSS</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="form-actions">
+              <button type="button" class="btn btn-outline" onclick="saveDraft()">
+                <i class="fas fa-save"></i> Lưu nháp
+              </button>
+              <button type="button" class="btn btn-primary btn-lg" onclick="publishJob()">
+                <i class="fas fa-paper-plane"></i> Đăng tin tuyển dụng
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <!-- Toast notification -->
+  <div id="toast" style="position:fixed;top:24px;right:24px;z-index:9999;display:none;">
+    <div class="alert alert-success" id="toastContent" style="min-width:300px;box-shadow:var(--shadow-lg);">
+      <i class="fas fa-check-circle"></i>
+      <span id="toastMessage">Thao tác thành công!</span>
+    </div>
+  </div>
+
+  <script src="../../assets/js/company.js"></script>
+  <script>
+    // =============================================
+    // Skills Tag Input
+    // =============================================
+    function handleSkillInput(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        const input = event.target;
+        const value = input.value.trim();
+
+        if (!value) return;
+
+        // Check for duplicate
+        const existing = document.querySelectorAll('#skillsWrapper .skill-tag');
+        for (const tag of existing) {
+          if (tag.dataset.skill.toLowerCase() === value.toLowerCase()) {
+            input.value = '';
+            return;
+          }
+        }
+
+        // Create new tag
+        const tag = document.createElement('span');
+        tag.className = 'skill-tag';
+        tag.dataset.skill = value;
+        tag.innerHTML = `${value} <span class="remove-skill" onclick="removeSkill(this, event)">&times;</span>`;
+
+        // Insert before the input
+        const wrapper = document.getElementById('skillsWrapper');
+        wrapper.insertBefore(tag, input);
+
+        input.value = '';
+        updatePreview();
+      }
+    }
+
+    function removeSkill(el, event) {
+      event.stopPropagation();
+      el.parentElement.remove();
+      updatePreview();
+    }
+
+    // =============================================
+    // Editor Toolbar (simple text formatting)
+    // =============================================
+    function formatText(textareaId, format) {
+      const textarea = document.getElementById(textareaId);
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      const selectedText = textarea.value.substring(start, end);
+
+      let replacement = '';
+      if (format === 'bold') {
+        replacement = selectedText ? `**${selectedText}**` : '**văn bản đậm**';
+      } else if (format === 'italic') {
+        replacement = selectedText ? `_${selectedText}_` : '_văn bản nghiêng_';
+      } else if (format === 'list') {
+        if (selectedText) {
+          replacement = selectedText.split('\n').map(line => {
+            line = line.replace(/^[-•]\s*/, '');
+            return line ? `- ${line}` : '';
+          }).join('\n');
+        } else {
+          replacement = '- Mục mới';
+        }
+      }
+
+      textarea.value = textarea.value.substring(0, start) + replacement + textarea.value.substring(end);
+      textarea.focus();
+      textarea.selectionStart = start;
+      textarea.selectionEnd = start + replacement.length;
+      updatePreview();
+    }
+
+    // =============================================
+    // Salary negotiate checkbox
+    // =============================================
+    document.getElementById('salaryNegotiate').addEventListener('change', function() {
+      const fromInput = document.getElementById('salaryFrom');
+      const toInput = document.getElementById('salaryTo');
+      const currencySelect = document.getElementById('salaryCurrency');
+
+      if (this.checked) {
+        fromInput.disabled = true;
+        toInput.disabled = true;
+        currencySelect.disabled = true;
+        fromInput.style.opacity = '0.5';
+        toInput.style.opacity = '0.5';
+        currencySelect.style.opacity = '0.5';
+      } else {
+        fromInput.disabled = false;
+        toInput.disabled = false;
+        currencySelect.disabled = false;
+        fromInput.style.opacity = '1';
+        toInput.style.opacity = '1';
+        currencySelect.style.opacity = '1';
+      }
+      updatePreview();
+    });
+
+    // =============================================
+    // Live Preview Update
+    // =============================================
+    function updatePreview() {
+      // Title
+      const title = document.getElementById('jobTitle').value || 'Chưa nhập tên vị trí';
+      document.getElementById('previewTitle').textContent = title;
+
+      // Location
+      const location = document.getElementById('location').value || 'Chưa nhập địa điểm';
+      document.getElementById('previewLocation').textContent = location;
+
+      // Job Type
+      const typeSelect = document.getElementById('jobType');
+      const typeText = typeSelect.options[typeSelect.selectedIndex]?.text || '—';
+      document.getElementById('previewType').textContent = typeText.startsWith('--') ? '—' : typeText;
+
+      // Deadline
+      const deadline = document.getElementById('deadline').value;
+      if (deadline) {
+        const d = new Date(deadline);
+        document.getElementById('previewDeadline').textContent =
+          `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}/${d.getFullYear()}`;
+      }
+
+      // Salary
+      const isNegotiate = document.getElementById('salaryNegotiate').checked;
+      if (isNegotiate) {
+        document.getElementById('previewSalary').textContent = 'Thỏa thuận';
+      } else {
+        const from = document.getElementById('salaryFrom').value;
+        const to = document.getElementById('salaryTo').value;
+        const currency = document.getElementById('salaryCurrency').value;
+        if (from && to) {
+          if (currency === 'VND') {
+            const fromNum = parseInt(from.replace(/,/g, '')) / 1000000;
+            const toNum = parseInt(to.replace(/,/g, '')) / 1000000;
+            document.getElementById('previewSalary').textContent = `${fromNum} - ${toNum} triệu VND`;
+          } else {
+            document.getElementById('previewSalary').textContent = `${from} - ${to} USD`;
+          }
+        }
+      }
+
+      // Position
+      const posSelect = document.getElementById('position');
+      const posText = posSelect.options[posSelect.selectedIndex]?.text || '—';
+      document.getElementById('previewPosition').textContent = posText.startsWith('--') ? '—' : posText;
+
+      // Experience
+      const expSelect = document.getElementById('experience');
+      const expText = expSelect.options[expSelect.selectedIndex]?.text || '—';
+      document.getElementById('previewExp').textContent = expText.startsWith('--') ? '—' : expText;
+
+      // Education
+      const eduSelect = document.getElementById('education');
+      const eduText = eduSelect.options[eduSelect.selectedIndex]?.text || '—';
+      document.getElementById('previewEdu').textContent = eduText.startsWith('--') ? '—' : eduText;
+
+      // Quantity
+      const qty = document.getElementById('quantity').value;
+      document.getElementById('previewQuantity').textContent = qty ? `${qty} người` : '—';
+
+      // Department
+      const deptSelect = document.getElementById('department');
+      const deptText = deptSelect.options[deptSelect.selectedIndex]?.text || '—';
+      document.getElementById('previewDept').textContent = deptText.startsWith('--') ? '—' : deptText;
+
+      // Description
+      const desc = document.getElementById('jobDescription').value;
+      document.getElementById('previewDesc').innerHTML = formatPreviewText(desc);
+
+      // Requirements
+      const req = document.getElementById('jobRequirements').value;
+      document.getElementById('previewReq').innerHTML = formatPreviewText(req);
+
+      // Benefits
+      const benefits = document.getElementById('jobBenefits').value;
+      document.getElementById('previewBenefits').innerHTML = formatPreviewText(benefits);
+
+      // Skills
+      const skillTags = document.querySelectorAll('#skillsWrapper .skill-tag');
+      const skillsHtml = Array.from(skillTags).map(tag =>
+        `<span class="skill-badge">${tag.dataset.skill}</span>`
+      ).join('');
+      document.getElementById('previewSkills').innerHTML = skillsHtml || '<span style="color:var(--text-muted);font-size:13px;">Chưa thêm kỹ năng</span>';
+    }
+
+    function formatPreviewText(text) {
+      if (!text) return '<span style="color:var(--text-muted);">Chưa nhập nội dung</span>';
+
+      const lines = text.split('\n').filter(line => line.trim());
+      const isList = lines.some(line => line.trim().startsWith('-') || line.trim().startsWith('•'));
+
+      if (isList) {
+        const items = lines.map(line => {
+          let content = line.trim().replace(/^[-•]\s*/, '');
+          // Handle basic markdown
+          content = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+          content = content.replace(/_(.*?)_/g, '<em>$1</em>');
+          return `<li>${content}</li>`;
+        }).join('');
+        return `<ul>${items}</ul>`;
+      }
+
+      return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                  .replace(/_(.*?)_/g, '<em>$1</em>')
+                  .replace(/\n/g, '<br>');
+    }
+
+    // =============================================
+    // Step indicator scroll highlight
+    // =============================================
+    function updateStepIndicators() {
+      const sections = document.querySelectorAll('.card.mb-24');
+      const steps = document.querySelectorAll('.form-step');
+      const connectors = document.querySelectorAll('.step-connector');
+
+      let activeIndex = 0;
+      sections.forEach((section, index) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight / 2) {
+          activeIndex = index;
+        }
+      });
+
+      steps.forEach((step, index) => {
+        step.classList.remove('active', 'completed');
+        if (index < activeIndex) {
+          step.classList.add('completed');
+        } else if (index === activeIndex) {
+          step.classList.add('active');
+        }
+      });
+
+      connectors.forEach((conn, index) => {
+        conn.classList.toggle('active', index < activeIndex);
+      });
+    }
+
+    window.addEventListener('scroll', updateStepIndicators);
+
+    // =============================================
+    // Bind input listeners for live preview
+    // =============================================
+    const inputIds = [
+      'jobTitle', 'department', 'jobType', 'position', 'quantity',
+      'salaryFrom', 'salaryTo', 'salaryCurrency', 'location', 'deadline',
+      'jobDescription', 'jobRequirements', 'jobBenefits', 'experience', 'education'
+    ];
+
+    inputIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('input', updatePreview);
+        el.addEventListener('change', updatePreview);
+      }
+    });
+
+    // =============================================
+    // Action handlers
+    // =============================================
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      const content = document.getElementById('toastContent');
+      const msg = document.getElementById('toastMessage');
+
+      content.className = `alert alert-${type}`;
+      const iconMap = {
+        success: 'fa-check-circle',
+        warning: 'fa-exclamation-triangle',
+        danger: 'fa-times-circle',
+        info: 'fa-info-circle'
+      };
+      content.querySelector('i').className = `fas ${iconMap[type] || iconMap.success}`;
+      msg.textContent = message;
+      toast.style.display = 'block';
+
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 3000);
+    }
+
+    function saveDraft() {
+      showToast('Tin tuyển dụng đã được lưu nháp thành công!', 'info');
+    }
+
+    function publishJob() {
+      // Basic validation
+      const title = document.getElementById('jobTitle').value.trim();
+      const dept = document.getElementById('department').value;
+      const type = document.getElementById('jobType').value;
+      const pos = document.getElementById('position').value;
+      const loc = document.getElementById('location').value.trim();
+      const deadline = document.getElementById('deadline').value;
+      const desc = document.getElementById('jobDescription').value.trim();
+      const req = document.getElementById('jobRequirements').value.trim();
+
+      if (!title || !dept || !type || !pos || !loc || !deadline || !desc || !req) {
+        showToast('Vui lòng điền đầy đủ các trường bắt buộc (*)', 'warning');
+        return;
+      }
+
+      showToast('Tin tuyển dụng đã được đăng thành công! Đang chờ duyệt.', 'success');
+
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Initial preview update
+    updatePreview();
+    updateStepIndicators();
+  </script>
+</body>
+</html>

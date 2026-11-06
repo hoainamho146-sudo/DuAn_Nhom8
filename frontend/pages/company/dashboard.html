@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tổng quan - Nhà tuyển dụng | JobPortal</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/company.css">
+</head>
+<body>
+  <div class="layout">
+    <!-- ========== SIDEBAR ========== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">JP</div>
+        <div>
+          <h2>JobPortal</h2>
+          <span>Nhà tuyển dụng</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-label">Quản lý</div>
+        <a href="dashboard.html" class="active">
+          <span class="nav-icon"><i class="fas fa-chart-pie"></i></span>
+          Tổng quan
+        </a>
+        <a href="dashboard.html#company-info">
+          <span class="nav-icon"><i class="fas fa-building"></i></span>
+          Thông tin doanh nghiệp
+        </a>
+        <a href="post-job.html">
+          <span class="nav-icon"><i class="fas fa-plus-circle"></i></span>
+          Đăng tin tuyển dụng
+        </a>
+        <a href="manage-jobs.html">
+          <span class="nav-icon"><i class="fas fa-briefcase"></i></span>
+          Quản lý tin tuyển dụng
+        </a>
+        <a href="applications.html">
+          <span class="nav-icon"><i class="fas fa-file-alt"></i></span>
+          Hồ sơ ứng tuyển
+        </a>
+        <a href="ai-recommend.html">
+          <span class="nav-icon"><i class="fas fa-robot"></i></span>
+          AI Gợi ý
+        </a>
+
+        <div class="nav-label" style="margin-top: 16px;">Hệ thống</div>
+        <a href="../../index.html">
+          <span class="nav-icon"><i class="fas fa-home"></i></span>
+          Về trang chủ
+        </a>
+        <a href="../auth/login.html">
+          <span class="nav-icon"><i class="fas fa-sign-out-alt"></i></span>
+          Đăng xuất
+        </a>
+      </nav>
+
+      <div class="sidebar-user">
+        <div class="user-avatar">TV</div>
+        <div class="user-info">
+          <div class="name">TechViet Solutions</div>
+          <div class="role">Nhà tuyển dụng</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="main-content">
+      <!-- Top Header -->
+      <header class="top-header">
+        <div>
+          <button class="btn-ghost sidebar-toggle" id="sidebarToggle" style="display:none; margin-right:8px; font-size:18px;">
+            <i class="fas fa-bars"></i>
+          </button>
+          <h1 class="page-title">Tổng quan</h1>
+        </div>
+        <div class="header-actions">
+          <div class="breadcrumb">
+            <a href="../../index.html">Trang chủ</a>
+            <span class="separator">/</span>
+            <span>Tổng quan</span>
+          </div>
+          <button class="btn btn-sm btn-outline" id="headerNotifBtn" style="position: relative;">
+            <i class="fas fa-bell"></i>
+            <span style="position:absolute;top:-4px;right:-4px;width:18px;height:18px;background:var(--danger);color:#fff;border-radius:50%;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;">3</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Page Content -->
+      <div class="page-content">
+
+        <!-- ===== SECTION 1: Stats Overview ===== -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon blue">
+              <i class="fas fa-briefcase"></i>
+            </div>
+            <div class="stat-info">
+              <h4>Tin tuyển dụng</h4>
+              <div class="stat-value">5</div>
+              <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i> +2 tháng này
+              </div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon green">
+              <i class="fas fa-user-plus"></i>
+            </div>
+            <div class="stat-info">
+              <h4>Ứng viên mới</h4>
+              <div class="stat-value">23</div>
+              <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i> +8 tuần này
+              </div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon yellow">
+              <i class="fas fa-file-alt"></i>
+            </div>
+            <div class="stat-info">
+              <h4>Đơn ứng tuyển</h4>
+              <div class="stat-value">47</div>
+              <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i> +12 tháng này
+              </div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon red">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div class="stat-info">
+              <h4>Tin chờ duyệt</h4>
+              <div class="stat-value">2</div>
+              <div class="stat-change negative">
+                <i class="fas fa-exclamation-circle"></i> Cần xử lý
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== SECTION 2: Quick Actions ===== -->
+        <div class="quick-actions">
+          <a href="post-job.html" class="quick-action-card">
+            <div class="qa-icon" style="color: var(--primary);">
+              <i class="fas fa-plus-circle"></i>
+            </div>
+            <h4>Đăng tin mới</h4>
+            <p>Tạo tin tuyển dụng mới</p>
+          </a>
+
+          <a href="applications.html" class="quick-action-card">
+            <div class="qa-icon" style="color: var(--secondary);">
+              <i class="fas fa-users"></i>
+            </div>
+            <h4>Xem ứng viên</h4>
+            <p>Duyệt hồ sơ ứng tuyển</p>
+          </a>
+
+          <a href="manage-jobs.html" class="quick-action-card">
+            <div class="qa-icon" style="color: var(--warning);">
+              <i class="fas fa-tasks"></i>
+            </div>
+            <h4>Quản lý tin</h4>
+            <p>Quản lý tin tuyển dụng</p>
+          </a>
+
+          <a href="#company-info" class="quick-action-card" onclick="scrollToCompanyInfo()">
+            <div class="qa-icon" style="color: var(--info);">
+              <i class="fas fa-building"></i>
+            </div>
+            <h4>Cập nhật hồ sơ DN</h4>
+            <p>Chỉnh sửa thông tin doanh nghiệp</p>
+          </a>
+        </div>
+
+        <!-- ===== SECTION 3: Company Profile (Thông tin doanh nghiệp) ===== -->
+        <div class="card mb-24" id="company-info">
+          <!-- Company Header with Gradient -->
+          <div class="company-info-header">
+            <div class="company-avatar">TV</div>
+            <div class="company-meta">
+              <h2>TechViet Solutions</h2>
+              <p>Công ty hàng đầu về giải pháp công nghệ, chuyên cung cấp dịch vụ phát triển phần mềm, tư vấn IT và chuyển đổi số cho doanh nghiệp.</p>
+              <div class="company-tags">
+                <span class="tag"><i class="fas fa-laptop-code"></i>&nbsp; Công nghệ thông tin</span>
+                <span class="tag"><i class="fas fa-users"></i>&nbsp; 50-100 nhân viên</span>
+                <span class="tag"><i class="fas fa-map-marker-alt"></i>&nbsp; TP. Hồ Chí Minh</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Company Detail Body -->
+          <div class="card-body">
+            <div class="section-header mb-16">
+              <h3><i class="fas fa-info-circle" style="color: var(--primary); margin-right: 8px;"></i>Chi tiết doanh nghiệp</h3>
+              <button class="btn btn-sm btn-primary" id="editCompanyBtn" onclick="openEditModal()">
+                <i class="fas fa-edit"></i> Chỉnh sửa thông tin
+              </button>
+            </div>
+
+            <div class="company-detail-grid">
+              <div class="company-detail-item">
+                <div class="detail-label"><i class="fas fa-building" style="margin-right: 4px;"></i> Tên doanh nghiệp</div>
+                <div class="detail-value" id="display-companyName">TechViet Solutions</div>
+              </div>
+              <div class="company-detail-item">
+                <div class="detail-label"><i class="fas fa-id-card" style="margin-right: 4px;"></i> Mã số thuế</div>
+                <div class="detail-value" id="display-taxCode">0123456789</div>
+              </div>
+              <div class="company-detail-item">
+                <div class="detail-label"><i class="fas fa-industry" style="margin-right: 4px;"></i> Lĩnh vực</div>
+                <div class="detail-value" id="display-industry">Công nghệ thông tin</div>
+              </div>
+              <div class="company-detail-item">
+                <div class="detail-label"><i class="fas fa-users" style="margin-right: 4px;"></i> Quy mô</div>
+                <div class="detail-value" id="display-companySize">50-100 nhân viên</div>
+              </div>
+              <div class="company-detail-item">
+                <div class="detail-label"><i class="fas fa-envelope" style="margin-right: 4px;"></i> Email</div>
+                <div class="detail-value" id="display-email">contact@techviet.vn</div>
+              </div>
+              <div class="company-detail-item">
+                <div class="detail-label"><i class="fas fa-phone" style="margin-right: 4px;"></i> Số điện thoại</div>
+                <div class="detail-value" id="display-phone">028-1234-5678</div>
+              </div>
+              <div class="company-detail-item">
+                <div class="detail-label"><i class="fas fa-map-marker-alt" style="margin-right: 4px;"></i> Địa chỉ</div>
+                <div class="detail-value" id="display-address">123 Nguyễn Huệ, Quận 1, TP.HCM</div>
+              </div>
+              <div class="company-detail-item">
+                <div class="detail-label"><i class="fas fa-globe" style="margin-right: 4px;"></i> Website</div>
+                <div class="detail-value" id="display-website">www.techviet.vn</div>
+              </div>
+              <div class="company-detail-item">
+                <div class="detail-label"><i class="fas fa-calendar-alt" style="margin-right: 4px;"></i> Năm thành lập</div>
+                <div class="detail-value" id="display-founded">2020</div>
+              </div>
+              <div class="company-detail-item">
+                <div class="detail-label"><i class="fas fa-check-circle" style="margin-right: 4px;"></i> Trạng thái</div>
+                <div class="detail-value"><span class="badge badge-success"><i class="fas fa-check"></i> Đã xác minh</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== SECTION 4 & 5: Bottom Grid (Activity + Recent Jobs) ===== -->
+        <div style="display: grid; grid-template-columns: 1fr 1.6fr; gap: 24px;">
+
+          <!-- SECTION 4: Recent Activity -->
+          <div class="card">
+            <div class="card-header">
+              <h3><i class="fas fa-clock" style="color: var(--primary); margin-right: 8px;"></i>Hoạt động gần đây</h3>
+            </div>
+            <div class="card-body" style="padding: 8px 24px;">
+              <div class="activity-list">
+                <div class="activity-item">
+                  <div class="activity-dot green"></div>
+                  <div class="activity-content">
+                    <p><strong>Nguyễn Văn An</strong> đã ứng tuyển vị trí <strong>Frontend Developer</strong></p>
+                    <div class="activity-time">15 phút trước</div>
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-dot blue"></div>
+                  <div class="activity-content">
+                    <p>Tin tuyển dụng <strong>Backend Developer</strong> đã được duyệt</p>
+                    <div class="activity-time">2 giờ trước</div>
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-dot yellow"></div>
+                  <div class="activity-content">
+                    <p><strong>Trần Thị Bình</strong> đã ứng tuyển vị trí <strong>UI/UX Designer</strong></p>
+                    <div class="activity-time">5 giờ trước</div>
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-dot green"></div>
+                  <div class="activity-content">
+                    <p>Bạn đã đăng tin tuyển dụng <strong>DevOps Engineer</strong></p>
+                    <div class="activity-time">1 ngày trước</div>
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-dot blue"></div>
+                  <div class="activity-content">
+                    <p>Cập nhật thông tin doanh nghiệp thành công</p>
+                    <div class="activity-time">2 ngày trước</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 5: Recent Job Postings -->
+          <div class="card">
+            <div class="card-header">
+              <h3><i class="fas fa-briefcase" style="color: var(--primary); margin-right: 8px;"></i>Tin tuyển dụng gần đây</h3>
+              <a href="manage-jobs.html" class="btn btn-sm btn-outline">
+                Xem tất cả <i class="fas fa-arrow-right" style="margin-left: 4px;"></i>
+              </a>
+            </div>
+            <div class="card-body" style="padding: 0;">
+              <div class="table-wrapper">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Tên vị trí</th>
+                      <th>Trạng thái</th>
+                      <th>Ứng viên</th>
+                      <th>Ngày đăng</th>
+                      <th>Hành động</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div style="font-weight: 600; color: var(--dark);">Frontend Developer</div>
+                        <div style="font-size: 12px; color: var(--text-muted);">15 - 25 triệu VNĐ</div>
+                      </td>
+                      <td><span class="badge badge-success"><span class="job-status-dot active"></span>Đang tuyển</span></td>
+                      <td><span class="app-count"><i class="fas fa-user"></i> 12</span></td>
+                      <td style="color: var(--text-secondary); font-size: 13px;">01/11/2024</td>
+                      <td>
+                        <div class="action-btns">
+                          <button class="action-btn" title="Xem chi tiết"><i class="fas fa-eye"></i></button>
+                          <button class="action-btn" title="Chỉnh sửa"><i class="fas fa-edit"></i></button>
+                          <button class="action-btn delete" title="Xóa"><i class="fas fa-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div style="font-weight: 600; color: var(--dark);">Backend Developer (Java)</div>
+                        <div style="font-size: 12px; color: var(--text-muted);">20 - 35 triệu VNĐ</div>
+                      </td>
+                      <td><span class="badge badge-success"><span class="job-status-dot active"></span>Đang tuyển</span></td>
+                      <td><span class="app-count"><i class="fas fa-user"></i> 8</span></td>
+                      <td style="color: var(--text-secondary); font-size: 13px;">28/10/2024</td>
+                      <td>
+                        <div class="action-btns">
+                          <button class="action-btn" title="Xem chi tiết"><i class="fas fa-eye"></i></button>
+                          <button class="action-btn" title="Chỉnh sửa"><i class="fas fa-edit"></i></button>
+                          <button class="action-btn delete" title="Xóa"><i class="fas fa-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div style="font-weight: 600; color: var(--dark);">UI/UX Designer</div>
+                        <div style="font-size: 12px; color: var(--text-muted);">12 - 20 triệu VNĐ</div>
+                      </td>
+                      <td><span class="badge badge-warning"><span class="job-status-dot pending"></span>Chờ duyệt</span></td>
+                      <td><span class="app-count"><i class="fas fa-user"></i> 5</span></td>
+                      <td style="color: var(--text-secondary); font-size: 13px;">25/10/2024</td>
+                      <td>
+                        <div class="action-btns">
+                          <button class="action-btn" title="Xem chi tiết"><i class="fas fa-eye"></i></button>
+                          <button class="action-btn" title="Chỉnh sửa"><i class="fas fa-edit"></i></button>
+                          <button class="action-btn delete" title="Xóa"><i class="fas fa-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div style="font-weight: 600; color: var(--dark);">DevOps Engineer</div>
+                        <div style="font-size: 12px; color: var(--text-muted);">25 - 40 triệu VNĐ</div>
+                      </td>
+                      <td><span class="badge badge-warning"><span class="job-status-dot pending"></span>Chờ duyệt</span></td>
+                      <td><span class="app-count"><i class="fas fa-user"></i> 0</span></td>
+                      <td style="color: var(--text-secondary); font-size: 13px;">03/11/2024</td>
+                      <td>
+                        <div class="action-btns">
+                          <button class="action-btn" title="Xem chi tiết"><i class="fas fa-eye"></i></button>
+                          <button class="action-btn" title="Chỉnh sửa"><i class="fas fa-edit"></i></button>
+                          <button class="action-btn delete" title="Xóa"><i class="fas fa-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.page-content -->
+    </main>
+  </div><!-- /.layout -->
+
+  <!-- ========== MODAL: Chỉnh sửa thông tin doanh nghiệp ========== -->
+  <div class="modal-overlay" id="editCompanyModal">
+    <div class="modal" style="max-width: 640px;">
+      <div class="modal-header">
+        <h3><i class="fas fa-building" style="color: var(--primary); margin-right: 8px;"></i>Chỉnh sửa thông tin doanh nghiệp</h3>
+        <button class="modal-close" onclick="closeEditModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="editCompanyForm" onsubmit="saveCompanyInfo(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Tên doanh nghiệp <span class="required">*</span></label>
+              <input type="text" class="form-control" id="edit-companyName" value="TechViet Solutions" required>
+            </div>
+            <div class="form-group">
+              <label>Mã số thuế <span class="required">*</span></label>
+              <input type="text" class="form-control" id="edit-taxCode" value="0123456789" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Lĩnh vực <span class="required">*</span></label>
+              <select class="form-control" id="edit-industry">
+                <option value="Công nghệ thông tin" selected>Công nghệ thông tin</option>
+                <option value="Tài chính - Ngân hàng">Tài chính - Ngân hàng</option>
+                <option value="Giáo dục - Đào tạo">Giáo dục - Đào tạo</option>
+                <option value="Y tế - Sức khỏe">Y tế - Sức khỏe</option>
+                <option value="Xây dựng - Bất động sản">Xây dựng - Bất động sản</option>
+                <option value="Thương mại - Dịch vụ">Thương mại - Dịch vụ</option>
+                <option value="Sản xuất - Chế tạo">Sản xuất - Chế tạo</option>
+                <option value="Truyền thông - Marketing">Truyền thông - Marketing</option>
+                <option value="Khác">Khác</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Quy mô <span class="required">*</span></label>
+              <select class="form-control" id="edit-companySize">
+                <option value="1-10 nhân viên">1-10 nhân viên</option>
+                <option value="11-50 nhân viên">11-50 nhân viên</option>
+                <option value="50-100 nhân viên" selected>50-100 nhân viên</option>
+                <option value="100-300 nhân viên">100-300 nhân viên</option>
+                <option value="300-500 nhân viên">300-500 nhân viên</option>
+                <option value="500-1000 nhân viên">500-1000 nhân viên</option>
+                <option value="Trên 1000 nhân viên">Trên 1000 nhân viên</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Email <span class="required">*</span></label>
+              <input type="email" class="form-control" id="edit-email" value="contact@techviet.vn" required>
+            </div>
+            <div class="form-group">
+              <label>Số điện thoại <span class="required">*</span></label>
+              <input type="tel" class="form-control" id="edit-phone" value="028-1234-5678" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Địa chỉ <span class="required">*</span></label>
+            <input type="text" class="form-control" id="edit-address" value="123 Nguyễn Huệ, Quận 1, TP.HCM" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Website</label>
+              <input type="text" class="form-control" id="edit-website" value="www.techviet.vn" placeholder="https://example.com">
+            </div>
+            <div class="form-group">
+              <label>Năm thành lập</label>
+              <input type="number" class="form-control" id="edit-founded" value="2020" min="1900" max="2030">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Mô tả doanh nghiệp</label>
+            <textarea class="form-control" id="edit-description" rows="3" placeholder="Giới thiệu ngắn về doanh nghiệp...">Công ty hàng đầu về giải pháp công nghệ, chuyên cung cấp dịch vụ phát triển phần mềm, tư vấn IT và chuyển đổi số cho doanh nghiệp.</textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="closeEditModal()">
+          <i class="fas fa-times"></i> Hủy bỏ
+        </button>
+        <button class="btn btn-primary" onclick="saveCompanyInfo(event)">
+          <i class="fas fa-save"></i> Lưu thay đổi
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== Toast Notification ========== -->
+  <div id="toast" style="position:fixed;bottom:32px;right:32px;z-index:2000;opacity:0;transform:translateY(20px);transition:all .3s ease;pointer-events:none;"></div>
+
+  <script src="../../assets/js/company.js"></script>
+</body>
+</html>

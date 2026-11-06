@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hệ Thống Tuyển Dụng & Việc Làm - Nhóm 8</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .portal-hero {
+      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .portal-hero h1 {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .portal-hero p {
+      font-size: 16px;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .portal-container {
+      max-width: 1000px;
+      margin: -40px auto 60px;
+      padding: 0 20px;
+    }
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .module-card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+      border: 2px solid transparent;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .module-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.15);
+      border-color: var(--primary);
+    }
+    .module-card.featured {
+      border-color: #2563eb;
+      background: linear-gradient(180deg, #ffffff 0%, #f0f7ff 100%);
+    }
+    .module-badge {
+      display: inline-block;
+      align-self: flex-start;
+      padding: 4px 10px;
+      background: #dbeafe;
+      color: #1e40af;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+    .module-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+    .module-links {
+      margin-top: auto;
+      padding-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .module-links a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      background: #f8fafc;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .module-links a:hover {
+      background: #2563eb;
+      color: white;
+    }
+  </style>
+</head>
+<body style="background: #f8fafc;">
+
+  <div class="portal-hero">
+    <h1><i class="fas fa-briefcase"></i> JobPortal - Nhóm 8</h1>
+    <p>Hệ thống tuyển dụng & tìm kiếm việc làm trực tuyến tích hợp AI</p>
+  </div>
+
+  <div class="portal-container">
+    <div class="module-grid">
+      
+      <!-- Module TV2 (Hoàn thành) -->
+      <div class="module-card featured">
+        <span class="module-badge"><i class="fas fa-star"></i> TV2 - Nhiệm Vụ Hôm Nay</span>
+        <div class="module-icon" style="background: #dbeafe; color: #2563eb;">
+          <i class="fas fa-building"></i>
+        </div>
+        <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 6px;">Phân hệ Doanh nghiệp & Tuyển dụng</h3>
+        <p style="color: #64748b; font-size: 13px; margin-bottom: 16px;">
+          Xây dựng giao diện quản lý thông tin doanh nghiệp, đăng tin tuyển dụng và quản lý chiến dịch tuyển dụng.
+        </p>
+        <div class="module-links">
+          <a href="pages/company/dashboard.html">
+            <span><i class="fas fa-chart-pie" style="margin-right: 8px;"></i> Tổng quan & Thông tin DN</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+          <a href="pages/company/post-job.html">
+            <span><i class="fas fa-plus-circle" style="margin-right: 8px;"></i> Đăng tin tuyển dụng mới</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+          <a href="pages/company/manage-jobs.html">
+            <span><i class="fas fa-briefcase" style="margin-right: 8px;"></i> Quản lý tin tuyển dụng</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Module TV1 -->
+      <div class="module-card">
+        <span class="module-badge" style="background: #e2e8f0; color: #475569;">TV1 - Tài khoản & Hồ sơ</span>
+        <div class="module-icon" style="background: #e0e7ff; color: #4338ca;">
+          <i class="fas fa-user-circle"></i>
+        </div>
+        <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 6px;">Tài khoản & Xác thực</h3>
+        <p style="color: #64748b; font-size: 13px; margin-bottom: 16px;">
+          Đăng ký, đăng nhập, phân quyền người dùng và quản lý hồ sơ cá nhân.
+        </p>
+        <div class="module-links">
+          <a href="pages/auth/login.html">
+            <span><i class="fas fa-sign-in-alt" style="margin-right: 8px;"></i> Đăng nhập</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+          <a href="pages/auth/register.html">
+            <span><i class="fas fa-user-plus" style="margin-right: 8px;"></i> Đăng ký</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Module TV3 -->
+      <div class="module-card">
+        <span class="module-badge" style="background: #e2e8f0; color: #475569;">TV3 - Việc làm & Ứng tuyển</span>
+        <div class="module-icon" style="background: #d1fae5; color: #059669;">
+          <i class="fas fa-search"></i>
+        </div>
+        <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 6px;">Ứng viên & Tìm việc</h3>
+        <p style="color: #64748b; font-size: 13px; margin-bottom: 16px;">
+          Tìm kiếm việc làm, xem chi tiết công việc, nộp đơn ứng tuyển và quản lý CV.
+        </p>
+        <div class="module-links">
+          <a href="pages/candidate/index.html">
+            <span><i class="fas fa-th-list" style="margin-right: 8px;"></i> Danh sách việc làm</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+          <a href="pages/candidate/my-applications.html">
+            <span><i class="fas fa-paper-plane" style="margin-right: 8px;"></i> Đơn đã ứng tuyển</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Module TV4 -->
+      <div class="module-card">
+        <span class="module-badge" style="background: #e2e8f0; color: #475569;">TV4 - Quản trị & AI</span>
+        <div class="module-icon" style="background: #fef3c7; color: #d97706;">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 6px;">Quản trị Admin & AI Matching</h3>
+        <p style="color: #64748b; font-size: 13px; margin-bottom: 16px;">
+          Kiểm duyệt tin tuyển dụng, quản lý tài khoản và phân tích CV bằng AI.
+        </p>
+        <div class="module-links">
+          <a href="pages/admin/dashboard.html">
+            <span><i class="fas fa-cog" style="margin-right: 8px;"></i> Quản trị hệ thống</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+          <a href="pages/admin/approve-jobs.html">
+            <span><i class="fas fa-check-double" style="margin-right: 8px;"></i> Kiểm duyệt tin</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thông tin doanh nghiệp - UniCareer</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/company.css">
+</head>
+<body>
+
+  <!-- TOPBAR CHUẨN FIGMA -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <a href="../../index.html" class="brand-logo">
+        <div class="brand-icon">U</div>
+        <span>UniCareer</span>
+      </a>
+      <span class="topbar-slogan" style="margin-left: 20px;">Nền tảng kết nối việc làm và định hướng nghề nghiệp</span>
+    </div>
+    <div class="topbar-right">
+      <a href="#">Thông báo</a>
+      <span>•</span>
+      <a href="company-info.html" style="font-weight: 600; color: var(--primary);">Tài khoản</a>
+    </div>
+  </header>
+
+  <!-- APP CONTAINER -->
+  <div class="app-container">
+    
+    <!-- SIDEBAR NHÀ TUYỂN DỤNG -->
+    <aside class="app-sidebar">
+      <div class="sidebar-role-title">Nhà tuyển dụng</div>
+      <ul class="sidebar-menu">
+        <li><a href="dashboard.html">Tổng quan</a></li>
+        <li><a href="company-info.html" class="active">Thông tin công ty</a></li>
+        <li><a href="manage-jobs.html">Tin tuyển dụng</a></li>
+        <li><a href="post-job.html">Đăng tin mới</a></li>
+        <li><a href="applications.html">Quản lý ứng viên</a></li>
+        <li style="margin-top: 20px;"><a href="../auth/login.html">Đăng xuất</a></li>
+      </ul>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="app-main">
+      
+      <!-- PAGE HEADER (FIGMA SCREEN 12) -->
+      <div class="page-header">
+        <h1 class="page-title">Thông tin doanh nghiệp</h1>
+        <p class="page-subtitle">Hồ sơ công ty và nội dung giới thiệu</p>
+      </div>
+
+      <!-- CONTENT CARD: FORM THÔNG TIN DOANH NGHIỆP -->
+      <div class="content-card">
+        <form id="companyInfoForm">
+          <div class="form-grid-2">
+            
+            <!-- Cột trái -->
+            <div>
+              <div class="form-group">
+                <label for="companyName">Tên công ty</label>
+                <input type="text" id="companyName" class="form-input" value="TechNova" placeholder="Nhập tên công ty">
+              </div>
+
+              <div class="form-group">
+                <label for="companyDesc">Mô tả công ty</label>
+                <textarea id="companyDesc" class="form-textarea" rows="4" placeholder="Giới thiệu về doanh nghiệp, môi trường làm việc...">Phát triển giải pháp phần mềm cho các doanh nghiệp trẻ và tổ chức.</textarea>
+              </div>
+            </div>
+
+            <!-- Cột phải -->
+            <div>
+              <div class="form-group">
+                <label for="companyWebsite">Website</label>
+                <input type="text" id="companyWebsite" class="form-input" value="technova.example" placeholder="https://...">
+              </div>
+
+              <div class="form-group">
+                <label for="companyIndustry">Ngành nghề</label>
+                <input type="text" id="companyIndustry" class="form-input" value="Công nghệ thông tin / Phần mềm" placeholder="VD: Công nghệ thông tin">
+              </div>
+            </div>
+
+          </div>
+
+          <!-- NÚT LƯU THÔNG TIN (FIGMA) -->
+          <div style="margin-top: 10px;">
+            <button type="submit" class="btn btn-primary">Lưu thông tin</button>
+          </div>
+        </form>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="../../assets/js/company.js"></script>
+</body>
+</html>

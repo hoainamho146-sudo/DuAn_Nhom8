@@ -3,638 +3,142 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quản lý tin tuyển dụng - JobPortal</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <title>Quản lý tin tuyển dụng - UniCareer</title>
   <link rel="stylesheet" href="../../assets/css/style.css">
   <link rel="stylesheet" href="../../assets/css/company.css">
-  <style>
-    .job-title-cell {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .job-title-cell .title-text {
-      font-weight: 600;
-      color: var(--dark);
-      font-size: 14px;
-    }
-    .job-title-cell .title-text:hover {
-      color: var(--primary);
-    }
-    .job-title-cell .dept-tag {
-      font-size: 11.5px;
-      color: var(--text-muted);
-    }
-    .filter-group {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .table-checkbox {
-      width: 16px;
-      height: 16px;
-      accent-color: var(--primary);
-      cursor: pointer;
-    }
-    .bulk-bar {
-      background: var(--primary-light);
-      border: 1px solid #bfdbfe;
-      padding: 10px 16px;
-      border-radius: var(--radius);
-      display: none;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 16px;
-    }
-    .bulk-bar.active {
-      display: flex;
-    }
-  </style>
 </head>
 <body>
-  <div class="layout">
-    <!-- ========== SIDEBAR ========== -->
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-brand">
-        <div class="brand-icon">JP</div>
-        <div>
-          <h2>JobPortal</h2>
-          <span>Nhà tuyển dụng</span>
-        </div>
-      </div>
 
-      <nav class="sidebar-nav">
-        <div class="nav-label">Quản lý</div>
-        <a href="dashboard.html">
-          <span class="nav-icon"><i class="fas fa-chart-pie"></i></span>
-          Tổng quan
-        </a>
-        <a href="dashboard.html#company-info">
-          <span class="nav-icon"><i class="fas fa-building"></i></span>
-          Thông tin doanh nghiệp
-        </a>
-        <a href="post-job.html">
-          <span class="nav-icon"><i class="fas fa-plus-circle"></i></span>
-          Đăng tin tuyển dụng
-        </a>
-        <a href="manage-jobs.html" class="active">
-          <span class="nav-icon"><i class="fas fa-briefcase"></i></span>
-          Quản lý tin tuyển dụng
-        </a>
-        <a href="applications.html">
-          <span class="nav-icon"><i class="fas fa-file-alt"></i></span>
-          Hồ sơ ứng tuyển
-        </a>
-        <a href="ai-recommend.html">
-          <span class="nav-icon"><i class="fas fa-robot"></i></span>
-          AI Gợi ý
-        </a>
+  <!-- TOPBAR CHUẨN FIGMA -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <a href="../../index.html" class="brand-logo">
+        <div class="brand-icon">U</div>
+        <span>UniCareer</span>
+      </a>
+      <span class="topbar-slogan" style="margin-left: 20px;">Nền tảng kết nối việc làm và định hướng nghề nghiệp</span>
+    </div>
+    <div class="topbar-right">
+      <a href="#">Thông báo</a>
+      <span>•</span>
+      <a href="company-info.html">Tài khoản</a>
+    </div>
+  </header>
 
-        <div class="nav-label" style="margin-top: 16px;">Hệ thống</div>
-        <a href="../../index.html">
-          <span class="nav-icon"><i class="fas fa-home"></i></span>
-          Về trang chủ
-        </a>
-        <a href="../auth/login.html">
-          <span class="nav-icon"><i class="fas fa-sign-out-alt"></i></span>
-          Đăng xuất
-        </a>
-      </nav>
-
-      <div class="sidebar-user">
-        <div class="user-avatar">TV</div>
-        <div class="user-info">
-          <div class="name">TechViet Solutions</div>
-          <div class="role">Nhà tuyển dụng</div>
-        </div>
-      </div>
+  <!-- APP CONTAINER -->
+  <div class="app-container">
+    
+    <!-- SIDEBAR NHÀ TUYỂN DỤNG -->
+    <aside class="app-sidebar">
+      <div class="sidebar-role-title">Nhà tuyển dụng</div>
+      <ul class="sidebar-menu">
+        <li><a href="dashboard.html">Tổng quan</a></li>
+        <li><a href="company-info.html">Thông tin công ty</a></li>
+        <li><a href="manage-jobs.html" class="active">Tin tuyển dụng</a></li>
+        <li><a href="post-job.html">Đăng tin mới</a></li>
+        <li><a href="applications.html">Quản lý ứng viên</a></li>
+        <li style="margin-top: 20px;"><a href="../auth/login.html">Đăng xuất</a></li>
+      </ul>
     </aside>
 
-    <!-- ========== MAIN CONTENT ========== -->
-    <main class="main-content">
-      <!-- Top Header -->
-      <header class="top-header">
-        <div class="breadcrumb">
-          <a href="dashboard.html"><i class="fas fa-home"></i> Tổng quan</a>
-          <span class="separator">/</span>
-          <span>Quản lý tin tuyển dụng</span>
-        </div>
-        <div class="header-actions">
-          <a href="post-job.html" class="btn btn-primary btn-sm">
-            <i class="fas fa-plus"></i> Đăng tin mới
-          </a>
-        </div>
-      </header>
-
-      <!-- Page Content -->
-      <div class="page-content">
-        <!-- Page Title & Overview -->
-        <div class="section-header" style="margin-bottom: 20px;">
-          <div>
-            <h2 style="font-size: 22px; font-weight: 700; color: var(--dark);">Danh sách tin tuyển dụng</h2>
-            <p style="color: var(--text-secondary); font-size: 13.5px; margin-top: 2px;">
-              Quản lý, chỉnh sửa, đóng/mở và theo dõi hiệu quả các chiến dịch tuyển dụng của bạn
-            </p>
-          </div>
-        </div>
-
-        <!-- Tabs -->
-        <div class="tabs" id="statusTabs">
-          <div class="tab active" data-status="all">Tất cả <span class="badge badge-gray" style="margin-left: 6px;">8</span></div>
-          <div class="tab" data-status="active">Đang hoạt động <span class="badge badge-success" style="margin-left: 6px;">4</span></div>
-          <div class="tab" data-status="pending">Chờ duyệt <span class="badge badge-warning" style="margin-left: 6px;">2</span></div>
-          <div class="tab" data-status="closed">Đã đóng <span class="badge badge-gray" style="margin-left: 6px;">1</span></div>
-          <div class="tab" data-status="rejected">Bị từ chối <span class="badge badge-danger" style="margin-left: 6px;">1</span></div>
-        </div>
-
-        <!-- Toolbar: Search & Filters -->
-        <div class="toolbar">
-          <div class="toolbar-left">
-            <div class="search-box">
-              <i class="fas fa-search search-icon"></i>
-              <input type="text" id="searchInput" placeholder="Tìm kiếm theo vị trí tuyển dụng, phòng ban...">
-            </div>
-            <select class="filter-select" id="deptFilter">
-              <option value="">Tất cả phòng ban</option>
-              <option value="Kỹ thuật">Phòng Kỹ thuật</option>
-              <option value="Thiết kế">Phòng Thiết kế</option>
-              <option value="Marketing">Phòng Marketing</option>
-              <option value="Kinh doanh">Phòng Kinh doanh</option>
-              <option value="Tài chính">Phòng Tài chính</option>
-            </select>
-            <select class="filter-select" id="timeFilter">
-              <option value="all">Mọi thời gian</option>
-              <option value="7">7 ngày qua</option>
-              <option value="30">30 ngày qua</option>
-              <option value="90">3 tháng qua</option>
-            </select>
-          </div>
-          <div class="toolbar-right">
-            <a href="post-job.html" class="btn btn-primary">
-              <i class="fas fa-plus"></i> Đăng tin mới
-            </a>
-          </div>
-        </div>
-
-        <!-- Bulk Action Bar -->
-        <div class="bulk-bar" id="bulkBar">
-          <span style="font-size: 13.5px; color: #1e40af; font-weight: 500;">
-            Đã chọn <strong id="selectedCount">0</strong> tin tuyển dụng
-          </span>
-          <div style="display: flex; gap: 8px;">
-            <button class="btn btn-sm btn-outline" onclick="bulkAction('close')">
-              <i class="fas fa-lock"></i> Đóng tin đã chọn
-            </button>
-            <button class="btn btn-sm btn-danger" onclick="bulkAction('delete')">
-              <i class="fas fa-trash"></i> Xóa đã chọn
-            </button>
-          </div>
-        </div>
-
-        <!-- Jobs Table Card -->
-        <div class="card">
-          <div class="table-wrapper">
-            <table class="data-table" id="jobsTable">
-              <thead>
-                <tr>
-                  <th style="width: 40px; text-align: center;">
-                    <input type="checkbox" class="table-checkbox" id="selectAll">
-                  </th>
-                  <th>Vị trí tuyển dụng</th>
-                  <th>Trạng thái</th>
-                  <th style="text-align: center;">Ứng viên</th>
-                  <th>Mức lương</th>
-                  <th>Ngày đăng</th>
-                  <th>Hạn nộp</th>
-                  <th style="text-align: right;">Hành động</th>
-                </tr>
-              </thead>
-              <tbody id="jobsTableBody">
-                <!-- Row 1 -->
-                <tr data-status="active" data-dept="Kỹ thuật" data-id="1">
-                  <td style="text-align: center;">
-                    <input type="checkbox" class="table-checkbox row-checkbox">
-                  </td>
-                  <td>
-                    <div class="job-title-cell">
-                      <a href="#" class="title-text">Lập trình viên Frontend (ReactJS / VueJS)</a>
-                      <span class="dept-tag"><i class="fas fa-code"></i> Phòng Kỹ thuật • Toàn thời gian</span>
-                    </div>
-                  </td>
-                  <td>
-                    <span class="badge badge-success"><span class="job-status-dot active"></span>Đang hoạt động</span>
-                  </td>
-                  <td style="text-align: center;">
-                    <a href="applications.html" class="app-count" title="Xem danh sách ứng viên">
-                      <i class="fas fa-user-friends"></i> 12
-                    </a>
-                  </td>
-                  <td style="font-weight: 600; color: var(--primary);">15 - 25 triệu</td>
-                  <td style="color: var(--text-secondary); font-size: 12.5px;">01/11/2026</td>
-                  <td style="color: var(--text-secondary); font-size: 12.5px;">30/11/2026</td>
-                  <td>
-                    <div class="action-btns" style="justify-content: flex-end;">
-                      <a href="post-job.html?id=1" class="action-btn" title="Chỉnh sửa"><i class="fas fa-edit"></i></a>
-                      <a href="applications.html?job_id=1" class="action-btn" title="Xem ứng viên"><i class="fas fa-eye"></i></a>
-                      <button class="action-btn" title="Đóng tin tuyển dụng" onclick="toggleJobStatus(1, 'closed')"><i class="fas fa-lock"></i></button>
-                      <button class="action-btn delete" title="Xóa tin" onclick="openDeleteModal(1, 'Lập trình viên Frontend (ReactJS / VueJS)')"><i class="fas fa-trash"></i></button>
-                    </div>
-                  </td>
-                </tr>
-
-                <!-- Row 2 -->
-                <tr data-status="active" data-dept="Kỹ thuật" data-id="2">
-                  <td style="text-align: center;">
-                    <input type="checkbox" class="table-checkbox row-checkbox">
-                  </td>
-                  <td>
-                    <div class="job-title-cell">
-                      <a href="#" class="title-text">Lập trình viên Backend (Python / FastAPI)</a>
-                      <span class="dept-tag"><i class="fas fa-server"></i> Phòng Kỹ thuật • Toàn thời gian</span>
-                    </div>
-                  </td>
-                  <td>
-                    <span class="badge badge-success"><span class="job-status-dot active"></span>Đang hoạt động</span>
-                  </td>
-                  <td style="text-align: center;">
-                    <a href="applications.html" class="app-count" title="Xem danh sách ứng viên">
-                      <i class="fas fa-user-friends"></i> 8
-                    </a>
-                  </td>
-                  <td style="font-weight: 600; color: var(--primary);">18 - 30 triệu</td>
-                  <td style="color: var(--text-secondary); font-size: 12.5px;">28/10/2026</td>
-                  <td style="color: var(--text-secondary); font-size: 12.5px;">28/11/2026</td>
-                  <td>
-                    <div class="action-btns" style="justify-content: flex-end;">
-                      <a href="post-job.html?id=2" class="action-btn" title="Chỉnh sửa"><i class="fas fa-edit"></i></a>
-                      <a href="applications.html?job_id=2" class="action-btn" title="Xem ứng viên"><i class="fas fa-eye"></i></a>
-                      <button class="action-btn" title="Đóng tin tuyển dụng" onclick="toggleJobStatus(2, 'closed')"><i class="fas fa-lock"></i></button>
-                      <button class="action-btn delete" title="Xóa tin" onclick="openDeleteModal(2, 'Lập trình viên Backend (Python / FastAPI)')"><i class="fas fa-trash"></i></button>
-                    </div>
-                  </td>
-                </tr>
-
-                <!-- Row 3 -->
-                <tr data-status="pending" data-dept="Thiết kế" data-id="3">
-                  <td style="text-align: center;">
-                    <input type="checkbox" class="table-checkbox row-checkbox">
-                  </td>
-                  <td>
-                    <div class="job-title-cell">
-                      <a href="#" class="title-text">UI/UX Designer (Product Design)</a>
-                      <span class="dept-tag"><i class="fas fa-paint-brush"></i> Phòng Thiết kế • Toàn thời gian</span>
-                    </div>
-                  </td>
-                  <td>
-                    <span class="badge badge-warning"><span class="job-status-dot pending"></span>Chờ duyệt</span>
-                  </td>
-                  <td style="text-align: center;">
-                    <span style="color: var(--text-muted); font-size: 12px;">0</span>
-                  </td>
-                  <td style="font-weight: 600; color: var(--primary);">12 - 20 triệu</td>
-                  <td style="color: var(--text-secondary); font-size: 12.5px;">05/11/2026</td>
-                  <td style="color: var(--text-secondary); font-size: 12.5px;">05/12/2026</td>
-                  <td>
-                    <div class="action-btns" style="justify-content: flex-end;">
-                      <a href="post-job.html?id=3" class="action-btn" title="Chỉnh sửa"><i class="fas fa-edit"></i></a>
-                      <button class="action-btn delete" title="Xóa tin" onclick="openDeleteModal(3, 'UI/UX Designer')"><i class="fas fa-trash"></i></button>
-                    </div>
-                  </td>
-                </tr>
-
-                <!-- Row 4 -->
-                <tr data-status="active" data-dept="Marketing" data-id="4">
-                  <td style="text-align: center;">
-                    <input type="checkbox" class="table-checkbox row-checkbox">
-                  </td>
-                  <td>
-                    <div class="job-title-cell">
-                      <a href="#" class="title-text">Chuyên viên Digital Marketing & SEO</a>
-                      <span class="dept-tag"><i class="fas fa-bullhorn"></i> Phòng Marketing • Toàn thời gian</span>
-                    </div>
-                  </td>
-                  <td>
-                    <span class="badge badge-success"><span class="job-status-dot active"></span>Đang hoạt động</span>
-                  </td>
-                  <td style="text-align: center;">
-                    <a href="applications.html" class="app-count" title="Xem danh sách ứng viên">
-                      <i class="fas fa-user-friends"></i> 15
-                    </a>
-                  </td>
-                  <td style="font-weight: 600; color: var(--primary);">10 - 18 triệu</td>
-                  <td style="color: var(--text-secondary); font-size: 12.5px;">25/10/2026</td>
-                  <td style="color: var(--text-secondary); font-size: 12.5px;">25/11/2026</td>
-                  <td>
-                    <div class="action-btns" style="justify-content: flex-end;">
-                      <a href="post-job.html?id=4" class="action-btn" title="Chỉnh sửa"><i class="fas fa-edit"></i></a>
-                      <a href="applications.html?job_id=4" class="action-btn" title="Xem ứng viên"><i class="fas fa-eye"></i></a>
-                      <button class="action-btn" title="Đóng tin tuyển dụng" onclick="toggleJobStatus(4, 'closed')"><i class="fas fa-lock"></i></button>
-                      <button class="action-btn delete" title="Xóa tin" onclick="openDeleteModal(4, 'Chuyên viên Digital Marketing & SEO')"><i class="fas fa-trash"></i></button>
-                    </div>
-                  </td>
-                </tr>
-
-                <!-- Row 5 -->
-                <tr data-status="active" data-dept="Kinh doanh" data-id="5">
-                  <td style="text-align: center;">
-                    <input type="checkbox" class="table-checkbox row-checkbox">
-                  </td>
-                  <td>
-                    <div class="job-title-cell">
-                      <a href="#" class="title-text">Chuyên viên Tư vấn & Phát triển Kinh doanh</a>
-                      <span class="dept-tag"><i class="fas fa-chart-line"></i> Phòng Kinh doanh • Toàn thời gian</span>
-                    </div>
-                  </td>
-                  <td>
-                    <span class="badge badge-success"><span class="job-status-dot active"></span>Đang hoạt động</span>
-                  </td>
-                  <td style="text-align: center;">
-                    <a href="applications.html" class="app-count" title="Xem danh sách ứng viên">
-                      <i class="fas fa-user-friends"></i> 7
-                    </a>
-                  </td>
-                  <td style="font-weight: 600; color: var(--primary);">12 - 22 triệu</td>
-                  <td style="color: var(--text-secondary); font-size: 12.5px;">30/10/2026</td>
-                  <td style="color: var(--text-secondary); font-size: 12.5px;">30/11/2026</td>
-                  <td>
-                    <div class="action-btns" style="justify-content: flex-end;">
-                      <a href="post-job.html?id=5" class="action-btn" title="Chỉnh sửa"><i class="fas fa-edit"></i></a>
-                      <a href="applications.html?job_id=5" class="action-btn" title="Xem ứng viên"><i class="fas fa-eye"></i></a>
-                      <button class="action-btn" title="Đóng tin tuyển dụng" onclick="toggleJobStatus(5, 'closed')"><i class="fas fa-lock"></i></button>
-                      <button class="action-btn delete" title="Xóa tin" onclick="openDeleteModal(5, 'Chuyên viên Tư vấn & Phát triển Kinh doanh')"><i class="fas fa-trash"></i></button>
-                    </div>
-                  </td>
-                </tr>
-
-                <!-- Row 6 -->
-                <tr data-status="pending" data-dept="Kỹ thuật" data-id="6">
-                  <td style="text-align: center;">
-                    <input type="checkbox" class="table-checkbox row-checkbox">
-                  </td>
-                  <td>
-                    <div class="job-title-cell">
-                      <a href="#" class="title-text">Thực tập sinh Lập trình Web Fullstack</a>
-                      <span class="dept-tag"><i class="fas fa-graduation-cap"></i> Phòng Kỹ thuật • Thực tập</span>
-                    </div>
-                  </td>
-                  <td>
-                    <span class="badge badge-warning"><span class="job-status-dot pending"></span>Chờ duyệt</span>
-                  </td>
-                  <td style="text-align: center;">
-                    <span style="color: var(--text-muted); font-size: 12px;">0</span>
-                  </td>
-                  <td style="font-weight: 600; color: var(--secondary);">3 - 5 triệu (Hỗ trợ)</td>
-                  <td style="color: var(--text-secondary); font-size: 12.5px;">05/11/2026</td>
-                  <td style="color: var(--text-secondary); font-size: 12.5px;">15/12/2026</td>
-                  <td>
-                    <div class="action-btns" style="justify-content: flex-end;">
-                      <a href="post-job.html?id=6" class="action-btn" title="Chỉnh sửa"><i class="fas fa-edit"></i></a>
-                      <button class="action-btn delete" title="Xóa tin" onclick="openDeleteModal(6, 'Thực tập sinh Lập trình Web Fullstack')"><i class="fas fa-trash"></i></button>
-                    </div>
-                  </td>
-                </tr>
-
-                <!-- Row 7 -->
-                <tr data-status="closed" data-dept="Kỹ thuật" data-id="7">
-                  <td style="text-align: center;">
-                    <input type="checkbox" class="table-checkbox row-checkbox">
-                  </td>
-                  <td>
-                    <div class="job-title-cell">
-                      <a href="#" class="title-text" style="color: var(--text-secondary); text-decoration: line-through;">Quản lý dự án phần mềm (Project Manager)</a>
-                      <span class="dept-tag"><i class="fas fa-tasks"></i> Phòng Kỹ thuật • Đã kết thúc đợt</span>
-                    </div>
-                  </td>
-                  <td>
-                    <span class="badge badge-gray"><span class="job-status-dot closed"></span>Đã đóng</span>
-                  </td>
-                  <td style="text-align: center;">
-                    <a href="applications.html" class="app-count" style="background: var(--bg); color: var(--text-secondary);" title="Xem danh sách ứng viên">
-                      <i class="fas fa-user-friends"></i> 20
-                    </a>
-                  </td>
-                  <td style="font-weight: 600; color: var(--text-secondary);">25 - 40 triệu</td>
-                  <td style="color: var(--text-secondary); font-size: 12.5px;">01/10/2026</td>
-                  <td style="color: var(--text-secondary); font-size: 12.5px;">31/10/2026</td>
-                  <td>
-                    <div class="action-btns" style="justify-content: flex-end;">
-                      <button class="action-btn" title="Mở lại tin" onclick="toggleJobStatus(7, 'active')"><i class="fas fa-redo"></i></button>
-                      <button class="action-btn delete" title="Xóa tin" onclick="openDeleteModal(7, 'Quản lý dự án phần mềm')"><i class="fas fa-trash"></i></button>
-                    </div>
-                  </td>
-                </tr>
-
-                <!-- Row 8 -->
-                <tr data-status="rejected" data-dept="Tài chính" data-id="8">
-                  <td style="text-align: center;">
-                    <input type="checkbox" class="table-checkbox row-checkbox">
-                  </td>
-                  <td>
-                    <div class="job-title-cell">
-                      <a href="#" class="title-text">Nhân viên Kế toán nội bộ</a>
-                      <span class="dept-tag"><i class="fas fa-calculator"></i> Phòng Tài chính • Toàn thời gian</span>
-                    </div>
-                  </td>
-                  <td>
-                    <span class="badge badge-danger" title="Lý do: Nội dung mô tả chưa đầy đủ"><span class="job-status-dot rejected"></span>Bị từ chối</span>
-                  </td>
-                  <td style="text-align: center;">
-                    <span style="color: var(--text-muted); font-size: 12px;">0</span>
-                  </td>
-                  <td style="font-weight: 600; color: var(--text-secondary);">10 - 15 triệu</td>
-                  <td style="color: var(--text-secondary); font-size: 12.5px;">03/11/2026</td>
-                  <td style="color: var(--text-secondary); font-size: 12.5px;">03/12/2026</td>
-                  <td>
-                    <div class="action-btns" style="justify-content: flex-end;">
-                      <a href="post-job.html?id=8" class="action-btn" title="Chỉnh sửa lại"><i class="fas fa-edit"></i></a>
-                      <button class="action-btn delete" title="Xóa tin" onclick="openDeleteModal(8, 'Nhân viên Kế toán nội bộ')"><i class="fas fa-trash"></i></button>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Empty search result state -->
-          <div id="noResultsState" class="empty-state" style="display: none;">
-            <div class="empty-icon"><i class="fas fa-search"></i></div>
-            <h4>Không tìm thấy tin tuyển dụng phù hợp</h4>
-            <p>Vui lòng thử điều chỉnh lại từ khóa tìm kiếm hoặc bộ lọc trạng thái</p>
-            <button class="btn btn-outline btn-sm" onclick="resetFilters()">Đặt lại bộ lọc</button>
-          </div>
-
-          <!-- Pagination -->
-          <div class="card-footer pagination" style="border-top: 1px solid var(--border);">
-            <div class="pagination-info" id="paginationInfo">
-              Hiển thị <strong>1-8</strong> trên tổng số <strong>8</strong> tin tuyển dụng
-            </div>
-            <div class="pagination-btns">
-              <button disabled><i class="fas fa-chevron-left"></i></button>
-              <button class="active">1</button>
-              <button disabled><i class="fas fa-chevron-right"></i></button>
-            </div>
-          </div>
-        </div>
+    <!-- MAIN CONTENT -->
+    <main class="app-main">
+      
+      <!-- PAGE HEADER (FIGMA SCREEN 13) -->
+      <div class="page-header">
+        <h1 class="page-title">Quản lý tin tuyển dụng</h1>
+        <p class="page-subtitle">Danh sách các tin tuyển dụng của công ty bạn</p>
       </div>
+
+      <!-- NÚT ĐĂNG TIN MỚI -->
+      <div style="margin-bottom: 20px;">
+        <a href="post-job.html" class="btn btn-primary">+ Đăng tin mới</a>
+      </div>
+
+      <!-- CONTENT CARD: BẢNG TIN TUYỂN DỤNG -->
+      <div class="content-card">
+        <div class="table-responsive">
+          <table class="table-custom" id="companyJobsTable">
+            <thead>
+              <tr>
+                <th>Vị trí</th>
+                <th>Loại hình</th>
+                <th>Hạn nộp</th>
+                <th>Trạng thái</th>
+                <th style="text-align: right;">Hành động</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Backend Developer Intern</strong></td>
+                <td>INTERNSHIP</td>
+                <td>30/11/2026</td>
+                <td>
+                  <span class="badge badge-active">ACTIVE</span>
+                  <span class="badge badge-approved" style="margin-left: 4px;">APPROVED</span>
+                </td>
+                <td style="text-align: right;">
+                  <a href="../candidate/job-detail.html?id=1" class="action-link" target="_blank">Xem</a>
+                  <a href="edit-job.html?id=1" class="action-link">Chỉnh sửa</a>
+                  <a href="javascript:void(0)" class="action-link danger" onclick="toggleCloseJob(this)">Đóng tin</a>
+                </td>
+              </tr>
+
+              <tr>
+                <td><strong>Frontend Intern</strong></td>
+                <td>INTERNSHIP</td>
+                <td>25/11/2026</td>
+                <td>
+                  <span class="badge badge-active">ACTIVE</span>
+                  <span class="badge badge-pending" style="margin-left: 4px;">PENDING</span>
+                </td>
+                <td style="text-align: right;">
+                  <a href="../candidate/job-detail.html?id=2" class="action-link" target="_blank">Xem</a>
+                  <a href="edit-job.html?id=2" class="action-link">Chỉnh sửa</a>
+                  <a href="javascript:void(0)" class="action-link danger" onclick="toggleCloseJob(this)">Đóng tin</a>
+                </td>
+              </tr>
+
+              <tr>
+                <td><strong>Data Analyst</strong></td>
+                <td>FULL-TIME</td>
+                <td>20/12/2026</td>
+                <td>
+                  <span class="badge badge-closed">CLOSED</span>
+                </td>
+                <td style="text-align: right;">
+                  <a href="../candidate/job-detail.html?id=3" class="action-link" target="_blank">Xem</a>
+                  <a href="edit-job.html?id=3" class="action-link">Chỉnh sửa</a>
+                  <a href="javascript:void(0)" class="action-link" style="color: var(--status-active);" onclick="toggleReopenJob(this)">Mở lại tin</a>
+                </td>
+              </tr>
+
+              <tr>
+                <td><strong>Business Analyst</strong></td>
+                <td>FULL-TIME</td>
+                <td>05/11/2026</td>
+                <td>
+                  <span class="badge badge-active">ACTIVE</span>
+                  <span class="badge badge-approved" style="margin-left: 4px;">APPROVED</span>
+                </td>
+                <td style="text-align: right;">
+                  <a href="../candidate/job-detail.html?id=4" class="action-link" target="_blank">Xem</a>
+                  <a href="edit-job.html?id=4" class="action-link">Chỉnh sửa</a>
+                  <a href="javascript:void(0)" class="action-link danger" onclick="toggleCloseJob(this)">Đóng tin</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p style="font-size: 11.5px; color: var(--text-muted); margin-top: 18px; border-top: 1px solid var(--border-light); padding-top: 12px;">
+          * Hành động: Xem / Chỉnh sửa / Đóng tin - Khóa ứng tuyển khi đã đủ số lượng.
+        </p>
+      </div>
+
     </main>
   </div>
 
-  <!-- Modal xác nhận xóa -->
-  <div class="modal-overlay" id="deleteModal">
-    <div class="modal">
-      <div class="modal-header">
-        <h3 style="color: var(--danger);"><i class="fas fa-exclamation-triangle"></i> Xác nhận xóa tin tuyển dụng</h3>
-        <button class="modal-close" onclick="closeDeleteModal()">&times;</button>
-      </div>
-      <div class="modal-body">
-        <p>Bạn có chắc chắn muốn xóa tin tuyển dụng: <strong id="deleteJobTitle"></strong>?</p>
-        <p class="form-hint" style="color: var(--danger); margin-top: 8px;">
-          Hành động này không thể hoàn tác. Các hồ sơ ứng tuyển liên quan cũng sẽ bị ảnh hưởng.
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-outline" onclick="closeDeleteModal()">Hủy bỏ</button>
-        <button class="btn btn-danger" onclick="confirmDelete()"><i class="fas fa-trash"></i> Xóa vĩnh viễn</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Scripts -->
   <script src="../../assets/js/company.js"></script>
-  <script>
-    // Tab switching & filter logic
-    const tabs = document.querySelectorAll('#statusTabs .tab');
-    const searchInput = document.getElementById('searchInput');
-    const deptFilter = document.getElementById('deptFilter');
-    const rows = document.querySelectorAll('#jobsTableBody tr');
-    const noResults = document.getElementById('noResultsState');
-    let currentStatus = 'all';
-
-    function filterRows() {
-      const query = searchInput.value.toLowerCase().trim();
-      const selectedDept = deptFilter.value;
-      let visibleCount = 0;
-
-      rows.forEach(row => {
-        const rowStatus = row.getAttribute('data-status');
-        const rowDept = row.getAttribute('data-dept');
-        const text = row.innerText.toLowerCase();
-
-        const matchStatus = (currentStatus === 'all' || rowStatus === currentStatus);
-        const matchDept = (!selectedDept || rowDept === selectedDept);
-        const matchQuery = (!query || text.includes(query));
-
-        if (matchStatus && matchDept && matchQuery) {
-          row.style.display = '';
-          visibleCount++;
-        } else {
-          row.style.display = 'none';
-        }
-      });
-
-      if (noResults) {
-        noResults.style.display = visibleCount === 0 ? 'block' : 'none';
-      }
-      document.getElementById('paginationInfo').innerHTML = 
-        `Hiển thị <strong>${visibleCount}</strong> trên tổng số <strong>${rows.length}</strong> tin tuyển dụng`;
-    }
-
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        currentStatus = tab.getAttribute('data-status');
-        filterRows();
-      });
-    });
-
-    searchInput.addEventListener('input', filterRows);
-    deptFilter.addEventListener('change', filterRows);
-
-    function resetFilters() {
-      searchInput.value = '';
-      deptFilter.value = '';
-      currentStatus = 'all';
-      tabs.forEach(t => t.classList.remove('active'));
-      tabs[0].classList.add('active');
-      filterRows();
-    }
-
-    // Select all & Bulk Actions
-    const selectAll = document.getElementById('selectAll');
-    const rowCheckboxes = document.querySelectorAll('.row-checkbox');
-    const bulkBar = document.getElementById('bulkBar');
-    const selectedCount = document.getElementById('selectedCount');
-
-    function updateBulkBar() {
-      const checked = document.querySelectorAll('.row-checkbox:checked').length;
-      if (checked > 0) {
-        bulkBar.classList.add('active');
-        selectedCount.textContent = checked;
-      } else {
-        bulkBar.classList.remove('active');
-      }
-    }
-
-    selectAll.addEventListener('change', () => {
-      rowCheckboxes.forEach(cb => {
-        if (cb.closest('tr').style.display !== 'none') {
-          cb.checked = selectAll.checked;
-        }
-      });
-      updateBulkBar();
-    });
-
-    rowCheckboxes.forEach(cb => {
-      cb.addEventListener('change', updateBulkBar);
-    });
-
-    function bulkAction(action) {
-      const checked = document.querySelectorAll('.row-checkbox:checked').length;
-      if (confirm(`Bạn có chắc muốn thực hiện thao tác này cho ${checked} tin tuyển dụng đã chọn?`)) {
-        alert(`Đã thực hiện thao tác thành công cho ${checked} tin!`);
-        rowCheckboxes.forEach(cb => cb.checked = false);
-        selectAll.checked = false;
-        updateBulkBar();
-      }
-    }
-
-    // Delete Modal
-    let pendingDeleteId = null;
-    function openDeleteModal(id, title) {
-      pendingDeleteId = id;
-      document.getElementById('deleteJobTitle').textContent = title;
-      document.getElementById('deleteModal').classList.add('active');
-    }
-    function closeDeleteModal() {
-      pendingDeleteId = null;
-      document.getElementById('deleteModal').classList.remove('active');
-    }
-    function confirmDelete() {
-      if (pendingDeleteId) {
-        const row = document.querySelector(`tr[data-id="${pendingDeleteId}"]`);
-        if (row) row.remove();
-        alert('Đã xóa tin tuyển dụng thành công!');
-        closeDeleteModal();
-        filterRows();
-      }
-    }
-
-    // Toggle job status
-    function toggleJobStatus(id, newStatus) {
-      const row = document.querySelector(`tr[data-id="${id}"]`);
-      if (row) {
-        if (newStatus === 'closed') {
-          alert('Đã đóng tin tuyển dụng!');
-          row.setAttribute('data-status', 'closed');
-        } else {
-          alert('Đã mở lại tin tuyển dụng!');
-          row.setAttribute('data-status', 'active');
-        }
-        filterRows();
-      }
-    }
-  </script>
 </body>
 </html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lý tin tuyển dụng - UniCareer</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/company.css">
+</head>
+<body>
+
+  <!-- TOPBAR CHUẨN FIGMA -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <a href="../../index.html" class="brand-logo">
+        <div class="brand-icon">U</div>
+        <span>UniCareer</span>
+      </a>
+      <span class="topbar-slogan" style="margin-left: 20px;">Nền tảng kết nối việc làm và định hướng nghề nghiệp</span>
+    </div>
+    <div class="topbar-right">
+      <a href="#">Thông báo</a>
+      <span>•</span>
+      <a href="company-info.html">Tài khoản</a>
+    </div>
+  </header>
+
+  <!-- APP CONTAINER -->
+  <div class="app-container">
+    
+    <!-- SIDEBAR NHÀ TUYỂN DỤNG -->
+    <aside class="app-sidebar">
+      <div class="sidebar-role-title">Nhà tuyển dụng</div>
+      <ul class="sidebar-menu">
+        <li><a href="dashboard.html">Tổng quan</a></li>
+        <li><a href="company-info.html">Thông tin công ty</a></li>
+        <li><a href="manage-jobs.html" class="active">Tin tuyển dụng</a></li>
+        <li><a href="post-job.html">Đăng tin mới</a></li>
+        <li><a href="applications.html">Quản lý ứng viên</a></li>
+        <li style="margin-top: 20px;"><a href="../auth/login.html">Đăng xuất</a></li>
+      </ul>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="app-main">
+      
+      <!-- PAGE HEADER (FIGMA SCREEN 13) -->
+      <div class="page-header">
+        <h1 class="page-title">Quản lý tin tuyển dụng</h1>
+        <p class="page-subtitle">Danh sách các tin tuyển dụng của công ty bạn</p>
+      </div>
+
+      <!-- NÚT ĐĂNG TIN MỚI -->
+      <div style="margin-bottom: 20px;">
+        <a href="post-job.html" class="btn btn-primary">+ Đăng tin mới</a>
+      </div>
+
+      <!-- CONTENT CARD: BẢNG TIN TUYỂN DỤNG -->
+      <div class="content-card">
+        <div class="table-responsive">
+          <table class="table-custom" id="companyJobsTable">
+            <thead>
+              <tr>
+                <th>Vị trí</th>
+                <th>Loại hình</th>
+                <th>Hạn nộp</th>
+                <th>Trạng thái</th>
+                <th style="text-align: right;">Hành động</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Backend Developer Intern</strong></td>
+                <td>INTERNSHIP</td>
+                <td>30/11/2026</td>
+                <td>
+                  <span class="badge badge-active">ACTIVE</span>
+                  <span class="badge badge-approved" style="margin-left: 4px;">APPROVED</span>
+                </td>
+                <td style="text-align: right;">
+                  <a href="../candidate/job-detail.html?id=1" class="action-link" target="_blank">Xem</a>
+                  <a href="edit-job.html?id=1" class="action-link">Chỉnh sửa</a>
+                  <a href="javascript:void(0)" class="action-link danger" onclick="toggleCloseJob(this)">Đóng tin</a>
+                </td>
+              </tr>
+
+              <tr>
+                <td><strong>Frontend Intern</strong></td>
+                <td>INTERNSHIP</td>
+                <td>25/11/2026</td>
+                <td>
+                  <span class="badge badge-active">ACTIVE</span>
+                  <span class="badge badge-pending" style="margin-left: 4px;">PENDING</span>
+                </td>
+                <td style="text-align: right;">
+                  <a href="../candidate/job-detail.html?id=2" class="action-link" target="_blank">Xem</a>
+                  <a href="edit-job.html?id=2" class="action-link">Chỉnh sửa</a>
+                  <a href="javascript:void(0)" class="action-link danger" onclick="toggleCloseJob(this)">Đóng tin</a>
+                </td>
+              </tr>
+
+              <tr>
+                <td><strong>Data Analyst</strong></td>
+                <td>FULL-TIME</td>
+                <td>20/12/2026</td>
+                <td>
+                  <span class="badge badge-closed">CLOSED</span>
+                </td>
+                <td style="text-align: right;">
+                  <a href="../candidate/job-detail.html?id=3" class="action-link" target="_blank">Xem</a>
+                  <a href="edit-job.html?id=3" class="action-link">Chỉnh sửa</a>
+                  <a href="javascript:void(0)" class="action-link" style="color: var(--status-active);" onclick="toggleReopenJob(this)">Mở lại tin</a>
+                </td>
+              </tr>
+
+              <tr>
+                <td><strong>Business Analyst</strong></td>
+                <td>FULL-TIME</td>
+                <td>05/11/2026</td>
+                <td>
+                  <span class="badge badge-active">ACTIVE</span>
+                  <span class="badge badge-approved" style="margin-left: 4px;">APPROVED</span>
+                </td>
+                <td style="text-align: right;">
+                  <a href="../candidate/job-detail.html?id=4" class="action-link" target="_blank">Xem</a>
+                  <a href="edit-job.html?id=4" class="action-link">Chỉnh sửa</a>
+                  <a href="javascript:void(0)" class="action-link danger" onclick="toggleCloseJob(this)">Đóng tin</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p style="font-size: 11.5px; color: var(--text-muted); margin-top: 18px; border-top: 1px solid var(--border-light); padding-top: 12px;">
+          * Hành động: Xem / Chỉnh sửa / Đóng tin - Khóa ứng tuyển khi đã đủ số lượng.
+        </p>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="../../assets/js/company.js"></script>
+</body>
+</html>

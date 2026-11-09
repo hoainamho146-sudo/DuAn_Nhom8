@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chỉnh sửa tin tuyển dụng - UniCareer</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/company.css">
+</head>
+<body>
+
+  <!-- TOPBAR CHUẨN FIGMA -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <a href="../../index.html" class="brand-logo">
+        <div class="brand-icon">U</div>
+        <span>UniCareer</span>
+      </a>
+      <span class="topbar-slogan" style="margin-left: 20px;">Nền tảng kết nối việc làm và định hướng nghề nghiệp</span>
+    </div>
+    <div class="topbar-right">
+      <a href="#">Thông báo</a>
+      <span>•</span>
+      <a href="company-info.html">Tài khoản</a>
+    </div>
+  </header>
+
+  <!-- APP CONTAINER -->
+  <div class="app-container">
+    
+    <!-- SIDEBAR NHÀ TUYỂN DỤNG -->
+    <aside class="app-sidebar">
+      <div class="sidebar-role-title">Nhà tuyển dụng</div>
+      <ul class="sidebar-menu">
+        <li><a href="dashboard.html">Tổng quan</a></li>
+        <li><a href="company-info.html">Thông tin công ty</a></li>
+        <li><a href="manage-jobs.html" class="active">Tin tuyển dụng</a></li>
+        <li><a href="post-job.html">Đăng tin mới</a></li>
+        <li><a href="applications.html">Quản lý ứng viên</a></li>
+        <li style="margin-top: 20px;"><a href="../auth/login.html">Đăng xuất</a></li>
+      </ul>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="app-main">
+      
+      <!-- PAGE HEADER (FIGMA SCREEN 15) -->
+      <div class="page-header">
+        <h1 class="page-title">Chỉnh sửa tin tuyển dụng</h1>
+        <p class="page-subtitle">Cập nhật nội dung, thời hạn và trạng thái tin</p>
+      </div>
+
+      <!-- CONTENT CARD: FORM CHỈNH SỬA TIN -->
+      <div class="content-card">
+        <form id="editJobForm">
+          <div class="form-grid-2">
+            
+            <!-- Cột 1 -->
+            <div>
+              <div class="form-group">
+                <label for="editJobTitle">Tên vị trí tuyển dụng <span class="req">*</span></label>
+                <input type="text" id="editJobTitle" class="form-input" value="Backend Developer Intern" required>
+              </div>
+
+              <div class="form-group">
+                <label for="editJobSalary">Mức lương</label>
+                <input type="text" id="editJobSalary" class="form-input" value="3-5 triệu/tháng">
+              </div>
+
+              <div class="form-group">
+                <label for="editJobType">Loại hình</label>
+                <select id="editJobType" class="form-select">
+                  <option value="INTERNSHIP" selected>INTERNSHIP (Thực tập)</option>
+                  <option value="FULL-TIME">FULL-TIME (Toàn thời gian)</option>
+                  <option value="PART-TIME">PART-TIME (Bán thời gian)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="editJobDesc">Mô tả công việc <span class="req">*</span></label>
+                <textarea id="editJobDesc" class="form-textarea" rows="4" required>Phát triển API bằng Python và FastAPI. Thiết kế, truy vấn và làm việc với MySQL.</textarea>
+              </div>
+            </div>
+
+            <!-- Cột 2 -->
+            <div>
+              <div class="form-group">
+                <label for="editJobLocation">Địa điểm</label>
+                <input type="text" id="editJobLocation" class="form-input" value="TP. Hồ Chí Minh">
+              </div>
+
+              <div class="form-group">
+                <label for="editJobDeadline">Hạn nộp <span class="req">*</span></label>
+                <input type="date" id="editJobDeadline" class="form-input" value="2026-11-30" required>
+              </div>
+
+              <div class="form-group">
+                <label for="editJobExperience">Kinh nghiệm</label>
+                <input type="text" id="editJobExperience" class="form-input" value="Không yêu cầu">
+              </div>
+
+              <div class="form-group">
+                <label for="editJobRequirements">Yêu cầu ứng viên <span class="req">*</span></label>
+                <textarea id="editJobRequirements" class="form-textarea" rows="4" required>Nắm kiến thức lập trình Python cơ bản. Biết HTTP, REST API và cơ sở dữ liệu MySQL.</textarea>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- NÚT LƯU THÔNG TIN & THAO TÁC -->
+          <div style="margin-top: 10px; display: flex; align-items: center; gap: 10px;">
+            <button type="submit" class="btn btn-primary">Lưu thông tin</button>
+            <a href="manage-jobs.html" class="btn btn-secondary">Quay lại danh sách</a>
+            <button type="button" class="btn btn-danger" style="margin-left: auto;" onclick="confirmCloseJob()">Đóng / Gỡ tin tuyển dụng</button>
+          </div>
+        </form>
+
+        <p style="font-size: 11.5px; color: var(--text-muted); margin-top: 20px; border-top: 1px solid var(--border-light); padding-top: 12px;">
+          * Trạng thái: <strong style="color: var(--status-active);">ACTIVE</strong> - Kiểm duyệt: <strong style="color: var(--status-active);">APPROVED</strong> - Có thể Đóng/Gỡ tin bất cứ lúc nào.
+        </p>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="../../assets/js/company.js"></script>
+</body>
+</html>

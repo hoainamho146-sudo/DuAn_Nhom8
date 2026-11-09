@@ -1,0 +1,95 @@
+/* ========================================================
+   COMPANY SPECIFIC STYLES - UNICAREER (TV2)
+   ======================================================== */
+
+/* Sidebar specific */
+.app-sidebar .sidebar-menu li a i {
+  width: 18px;
+  font-size: 14px;
+  margin-right: 8px;
+  text-align: center;
+}
+
+/* AI Matching Screen (Screen 10) */
+.ai-score-card {
+  display: flex;
+  gap: 24px;
+  align-items: stretch;
+  margin-top: 16px;
+}
+
+.ai-score-box {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  min-width: 220px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ai-score-number {
+  font-size: 38px;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+
+.ai-score-label {
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+.ai-details-box {
+  flex: 1;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+}
+
+.ai-section-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 6px;
+}
+
+.ai-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.ai-tag {
+  background: var(--status-active-bg);
+  color: var(--status-active);
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.ai-need-tag {
+  background: #fff7ed;
+  color: #c2410c;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+/* Status Select in applications table */
+.status-select {
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  font-size: 12px;
+  background: #fff;
+  font-weight: 500;
+  cursor: pointer;
+}

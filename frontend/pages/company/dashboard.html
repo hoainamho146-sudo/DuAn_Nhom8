@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard nhà tuyển dụng - UniCareer</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/company.css">
+</head>
+<body>
+
+  <!-- TOPBAR CHUẨN FIGMA -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <a href="../../index.html" class="brand-logo">
+        <div class="brand-icon">U</div>
+        <span>UniCareer</span>
+      </a>
+      <span class="topbar-slogan" style="margin-left: 20px;">Nền tảng kết nối việc làm và định hướng nghề nghiệp</span>
+    </div>
+    <div class="topbar-right">
+      <a href="#">Thông báo</a>
+      <span>•</span>
+      <a href="company-info.html">Tài khoản</a>
+    </div>
+  </header>
+
+  <!-- APP CONTAINER -->
+  <div class="app-container">
+    
+    <!-- SIDEBAR NHÀ TUYỂN DỤNG -->
+    <aside class="app-sidebar">
+      <div class="sidebar-role-title">Nhà tuyển dụng</div>
+      <ul class="sidebar-menu">
+        <li><a href="dashboard.html" class="active">Tổng quan</a></li>
+        <li><a href="company-info.html">Thông tin công ty</a></li>
+        <li><a href="manage-jobs.html">Tin tuyển dụng</a></li>
+        <li><a href="post-job.html">Đăng tin mới</a></li>
+        <li><a href="applications.html">Quản lý ứng viên</a></li>
+        <li style="margin-top: 20px;"><a href="../auth/login.html">Đăng xuất</a></li>
+      </ul>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="app-main">
+      
+      <!-- PAGE HEADER -->
+      <div class="page-header">
+        <h1 class="page-title">Dashboard nhà tuyển dụng</h1>
+        <p class="page-subtitle">Tổng quan tin tuyển dụng và hồ sơ ứng tuyển</p>
+      </div>
+
+      <!-- 4 STAT BOXES (FIGMA SCREEN 11) -->
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-box-label">Tổng đơn</div>
+          <div class="stat-box-number">08</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-label">Đã duyệt</div>
+          <div class="stat-box-number">03</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-label">Đang xem xét</div>
+          <div class="stat-box-number">24</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-label">Chấp nhận</div>
+          <div class="stat-box-number">12</div>
+        </div>
+      </div>
+
+      <!-- CONTENT CARD: HOẠT ĐỘNG GẦN ĐÂY -->
+      <div class="content-card">
+        <h3 class="card-title">Hoạt động gần đây</h3>
+        <div class="table-responsive">
+          <table class="table-custom">
+            <thead>
+              <tr>
+                <th>Tin tuyển dụng</th>
+                <th>Trạng thái</th>
+                <th>Kiểm duyệt</th>
+                <th>Ứng viên</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Backend Developer Intern</strong></td>
+                <td><span class="badge badge-active">ACTIVE</span></td>
+                <td><span class="badge badge-approved">APPROVED</span></td>
+                <td><strong>12</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Frontend Intern</strong></td>
+                <td><span class="badge badge-active">ACTIVE</span></td>
+                <td><span class="badge badge-pending">PENDING</span></td>
+                <td><strong>03</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Business Analyst</strong></td>
+                <td><span class="badge badge-closed">CLOSED</span></td>
+                <td><span class="badge badge-approved">APPROVED</span></td>
+                <td><strong>24</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- NÚT ĐĂNG TIN TUYỂN DỤNG (FIGMA) -->
+      <div>
+        <a href="post-job.html" class="btn btn-primary">+ Đăng tin tuyển dụng</a>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="../../assets/js/company.js"></script>
+</body>
+</html>
